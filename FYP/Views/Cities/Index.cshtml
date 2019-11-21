@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FYP.Models.Cities>
+﻿@model IEnumerable<FYP.Models.City>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,9 +6,6 @@
 }
 
 <h1>Index</h1>
-<button class="btn-primary align-content-lg-center">
-    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Return to User View</a>
-</button>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -20,40 +17,64 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Country)
+                @Html.DisplayNameFor(model => model.Population)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GeneralPicture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GeneralDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualityOfLifeIndex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forum)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CostOfLivingIndex)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.RentIndex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchasingPowerIndex)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ClimateType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Population)
+                @Html.DisplayNameFor(model => model.ClimateImage)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoOfUniversities)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NoOfAirports)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LightRailLines)
+                @Html.DisplayNameFor(model => model.ClimateDescription)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TrafficRate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HomicideRate)
+                @Html.DisplayNameFor(model => model.LightRailLines)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IncomeTax)
+                @Html.DisplayNameFor(model => model.NoOfAirports)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vat)
+                @Html.DisplayNameFor(model => model.TransportImage)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CorporationTax)
+                @Html.DisplayNameFor(model => model.TransportDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfUniversities)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SafetyIndex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PollutionIndex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
             </th>
             <th></th>
         </tr>
@@ -65,40 +86,64 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Country)
+                @Html.DisplayFor(modelItem => item.Population)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeneralPicture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeneralDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualityOfLifeIndex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Forum)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CostOfLivingIndex)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.RentIndex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchasingPowerIndex)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ClimateType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Population)
+                @Html.DisplayFor(modelItem => item.ClimateImage)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NoOfUniversities)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoOfAirports)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LightRailLines)
+                @Html.DisplayFor(modelItem => item.ClimateDescription)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TrafficRate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HomicideRate)
+                @Html.DisplayFor(modelItem => item.LightRailLines)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IncomeTax)
+                @Html.DisplayFor(modelItem => item.NoOfAirports)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Vat)
+                @Html.DisplayFor(modelItem => item.TransportImage)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CorporationTax)
+                @Html.DisplayFor(modelItem => item.TransportDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfUniversities)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SafetyIndex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PollutionIndex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CityId">Edit</a> |

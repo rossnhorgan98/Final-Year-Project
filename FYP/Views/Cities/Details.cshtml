@@ -1,4 +1,4 @@
-﻿@model FYP.Models.Cities
+﻿@model FYP.Models.City
 
 @{
     ViewData["Title"] = "Details";
@@ -8,7 +8,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Cities</h4>
+    <h4>City</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -18,10 +18,34 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Country)
+            @Html.DisplayNameFor(model => model.Population)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Country)
+            @Html.DisplayFor(model => model.Population)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GeneralPicture)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GeneralPicture)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GeneralDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GeneralDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.QualityOfLifeIndex)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.QualityOfLifeIndex)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Forum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Forum)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CostOfLivingIndex)
@@ -30,34 +54,34 @@
             @Html.DisplayFor(model => model.CostOfLivingIndex)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RentIndex)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RentIndex)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchasingPowerIndex)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PurchasingPowerIndex)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ClimateType)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ClimateType)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Population)
+            @Html.DisplayNameFor(model => model.ClimateImage)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Population)
+            @Html.DisplayFor(model => model.ClimateImage)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NoOfUniversities)
+            @Html.DisplayNameFor(model => model.ClimateDescription)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NoOfUniversities)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NoOfAirports)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NoOfAirports)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LightRailLines)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LightRailLines)
+            @Html.DisplayFor(model => model.ClimateDescription)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TrafficRate)
@@ -66,28 +90,52 @@
             @Html.DisplayFor(model => model.TrafficRate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HomicideRate)
+            @Html.DisplayNameFor(model => model.LightRailLines)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HomicideRate)
+            @Html.DisplayFor(model => model.LightRailLines)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IncomeTax)
+            @Html.DisplayNameFor(model => model.NoOfAirports)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IncomeTax)
+            @Html.DisplayFor(model => model.NoOfAirports)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Vat)
+            @Html.DisplayNameFor(model => model.TransportImage)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Vat)
+            @Html.DisplayFor(model => model.TransportImage)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CorporationTax)
+            @Html.DisplayNameFor(model => model.TransportDescription)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CorporationTax)
+            @Html.DisplayFor(model => model.TransportDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NoOfUniversities)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NoOfUniversities)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SafetyIndex)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SafetyIndex)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PollutionIndex)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PollutionIndex)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Country.Name)
         </dd>
     </dl>
 </div>

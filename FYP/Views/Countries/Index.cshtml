@@ -1,0 +1,180 @@
+﻿@model IEnumerable<FYP.Models.Country>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfCities)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Map)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Population)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanguageS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Currency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gdp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HealthcareRanking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AverageWage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvgWorkHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinAnnualLeave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinnimumWage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnemploymentRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PensionIndex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvgUniCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EducationDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxIncomeTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinIncomeTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorporationTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaxDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomicideRate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfCities)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Map)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Population)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LanguageS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gdp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HealthcareRanking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AverageWage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvgWorkHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinAnnualLeave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinnimumWage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnemploymentRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PensionIndex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvgUniCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducationDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxIncomeTax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinIncomeTax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorporationTax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomicideRate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CountryId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CountryId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CountryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
