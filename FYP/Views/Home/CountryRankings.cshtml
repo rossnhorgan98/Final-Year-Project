@@ -1,0 +1,805 @@
+﻿@model IEnumerable<FYP.Models.Country>
+
+@{
+    ViewData["Title"] = "CountryRankings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Country Rankings</h1>
+
+<script>
+    function viewCountryGeneral() {
+        document.getElementById('CountryWork').style.display = "none";
+        document.getElementById('CountryTaxes').style.display = "none";
+        document.getElementById('CountryGeneral').style.display = "block";
+    }
+
+    function viewCountryWork() {
+        document.getElementById('CountryGeneral').style.display = "none";
+        document.getElementById('CountryTaxes').style.display = "none";
+        document.getElementById('CountryWork').style.display = "block";
+    }
+
+    function viewCountryTaxes() {
+        document.getElementById('CountryGeneral').style.display = "none";
+        document.getElementById('CountryWork').style.display = "none";
+        document.getElementById('CountryTaxes').style.display = "block";
+    }
+
+    function viewPopulationTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "table";
+    }
+
+    function viewHdiTable() {
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblHdi').style.display = "table";
+    }
+
+    function viewGdpTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblGdp').style.display = "table";
+    }
+
+    function viewHealthcareTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "table";
+    }
+
+    function viewAvgUniCostTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "table";
+    }
+
+    function viewHomicideTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "table";
+    }
+
+    function viewAvgWageTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "table";
+    }
+
+    function viewWorkHoursTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "table";
+    }
+
+    function viewAnnualLeaveTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "table";
+    }
+
+    function viewMinWageTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "table";
+    }
+
+    function viewUnemploymentTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "table";
+    }
+
+    function viewPensionTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblPension').style.display = "table";
+    }
+
+    function viewMaxIncomeTaxTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "table";
+    }
+
+    function viewMinIncomeTaxTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "table";
+    }
+
+    function viewVatTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "table";
+    }
+
+    function viewCorporationTaxTable() {
+            document.getElementById('tblHdi').style.display = "none";
+            document.getElementById('tblGdp').style.display = "none";
+            document.getElementById('tblHealthcare').style.display = "none";
+            document.getElementById('tblAvgUniCost').style.display = "none";
+            document.getElementById('tblHomicide').style.display = "none";
+            document.getElementById('tblAvgWage').style.display = "none";
+            document.getElementById('tblWorkHours').style.display = "none";
+            document.getElementById('tblAnnualLeave').style.display = "none";
+            document.getElementById('tblMinWage').style.display = "none";
+            document.getElementById('tblUnemployment').style.display = "none";
+            document.getElementById('tblPension').style.display = "none";
+            document.getElementById('tblMaxIncomeTax').style.display = "none";
+            document.getElementById('tblMinIncomeTax').style.display = "none";
+            document.getElementById('tblVat').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblCorporationTax').style.display = "table";
+        }
+</script>
+
+<div class="container text-center">
+    <!--Countries Rankings Categories-->
+    <div class="container text-center" id="CountriesCategories">
+        <button class="btn btn-primary" name="btnCountryGeneral" onclick="viewCountryGeneral()">General</button>
+        <button class="btn btn-primary" name="btnCountryWork" onclick="viewCountryWork()">Work</button>
+        <button class="btn btn-primary" name="btnCityTax" onclick="viewCountryTaxes()">Taxes</button>
+    </div>
+
+    <div class="container text-center" id="CountryGeneral" style="display:none;">
+        <button class="btn btn-primary" name="btnCountryPopulation" onclick="viewPopulationTable()">Population</button>
+        <button class="btn btn-primary" name="btnHDI" onclick="viewHdiTable()">Human Development Index</button>
+        <button class="btn btn-primary" name="btnGDP" onclick="viewGdpTable()">Gross Domestic Product</button>
+        <button class="btn btn-primary" name="btnHealthcare" onclick="viewHealthcareTable()">Healthcare Ranking</button>
+        <button class="btn btn-primary" name="btnAvgUniCost" onclick="viewAvgUniCostTable()">Average Annual University Tuition Fees</button>
+        <button class="btn btn-primary" name="btnHomicide" onclick="viewHomicideTable()">Homicide Rate</button>
+    </div>
+
+    <div class="container text-center" id="CountryWork" style="display:none;">
+        <button class="btn btn-primary" name="btnAvgWage" onclick="viewAvgWageTable()">Average Salary per Annum</button>
+        <button class="btn btn-primary" name="btnWorkHours" onclick="viewWorkHoursTable()">Average Work Hours per Week</button>
+        <button class="btn btn-primary" name="btnAnnualLeave" onclick="viewAnnualLeaveTable()">Minnimum Annual Leave</button>
+        <button class="btn btn-primary" name="btnMinWage" onclick="viewMinWageTable()">Minnimum Wage</button>
+        <button class="btn btn-primary" name="btnUnemployment" onclick="viewUnemploymentTable()">Unemployment Rate</button>
+        <button class="btn btn-primary" name="btnPension" onclick="viewPensionTable()">Pension Index</button>
+    </div>
+
+    <div class="container text-center" id="CountryTaxes" style="display:none;">
+        <button class="btn btn-primary" name="btnMaxIncomeTax" onclick="viewMaxIncomeTaxTable()">Maximum Income Tax Rate</button>
+        <button class="btn btn-primary" name="btnMinIncomeTax" onclick="viewMinIncomeTaxTable()">Minnimum Income Tax Rate</button>
+        <button class="btn btn-primary" name="btnVAT" onclick="viewVatTable()">Standard VAT Rate</button>
+        <button class="btn btn-primary" name="btnCorporationTax" onclick="viewCorporationTaxTable()">Standard Corporation Tax Rate</button>
+    </div>
+    <br />
+    <p><i>All monetary figures are in US Dollars</i></p>
+    <br />
+
+    <!--Ranking Tables-->
+    @{ int populationRank = 0;
+        int hdiRank = 0;
+        int gdpRank = 0;
+        int healthcareRank = 0;
+        int avgUniCostRank = 0;
+        int homicideRank = 0;
+        int avgWageRank = 0;
+        int workHoursRank = 0;
+        int annualLeaveRank = 0;
+        int minWageRank = 0;
+        int unemploymentRank = 0;
+        int pensionRank = 0;
+        int maxIncomeTaxRank = 0;
+        int minIncomeTaxRank = 0;
+        int vatRank = 0;
+        int corporationTaxRank = 0;
+    } <!--Source: https://stackoverflow.com/a/25698547 -->
+
+    <table class="table" id="tblPopulation" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Population</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.Population))
+            {
+                <tr>
+                    <td>
+                        @(populationRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Population)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblHdi" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Human Development Index</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.Hdi))
+            {
+                <tr>
+                    <td>
+                        @(hdiRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hdi)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblGdp" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Gross Domestic Product</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.Gdp))
+            {
+                <tr>
+                    <td>
+                        @(gdpRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.Gdp) million
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblHealthcare" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Healthcare Ranking</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.HealthcareRanking))
+            {
+                <tr>
+                    <td>
+                        @(healthcareRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HealthcareRanking)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblAvgUniCost" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Average Tuition Fees per Annum</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.AvgUniCost))
+            {
+                <tr>
+                    <td>
+                        @(avgUniCostRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.AvgUniCost)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblHomicide" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Homicide Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.HomicideRate))
+            {
+                <tr>
+                    <td>
+                        @(homicideRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HomicideRate)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblAvgWage" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Average Annual Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.AverageWage))
+            {
+                <tr>
+                    <td>
+                        @(avgWageRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.AverageWage)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblWorkHours" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Average Work Hours per Week</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.AvgWorkHours))
+            {
+                <tr>
+                    <td>
+                        @(workHoursRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AvgWorkHours)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblAnnualLeave" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Minnimum Annual Leave</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.MinAnnualLeave))
+            {
+                <tr>
+                    <td>
+                        @(annualLeaveRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MinAnnualLeave) days
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblMinWage" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Minnimum Wage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.MinnimumWage))
+            {
+                <tr>
+                    <td>
+                        @(minWageRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.MinnimumWage)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblUnemployment" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Unemployment Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.UnemploymentRate))
+            {
+                <tr>
+                    <td>
+                        @(unemploymentRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnemploymentRate)%
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblPension" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Pension Index</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.PensionIndex))
+            {
+                <tr>
+                    <td>
+                        @(pensionRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PensionIndex)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblMaxIncomeTax" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Maximmum Income Tax Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.MaxIncomeTax))
+            {
+                <tr>
+                    <td>
+                        @(maxIncomeTaxRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaxIncomeTax)%
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblMinIncomeTax" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Minnimum Income Tax Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.MinIncomeTax))
+            {
+                <tr>
+                    <td>
+                        @(minIncomeTaxRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MinIncomeTax)%
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblVat" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Standard VAT Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.Vat))
+            {
+                <tr>
+                    <td>
+                        @(vatRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vat)%
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblCorporationTax" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Standard Corporation Tax Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.CorporationTax))
+            {
+                <tr>
+                    <td>
+                        @(corporationTaxRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CorporationTax)%
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FYP.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FYP.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly InventoryContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, InventoryContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -38,9 +41,15 @@ namespace FYP.Controllers
             return View();
         }
 
-        public IActionResult Rankings()
+        public async Task<IActionResult> CityRankings()
         {
-            return View();
+            var inventoryContext = _context.City.Include(c => c.Country);
+            return View(await inventoryContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> CountryRankings()
+        {
+            return View(await _context.Country.ToListAsync());
         }
 
         public IActionResult Privacy()

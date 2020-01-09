@@ -1,0 +1,518 @@
+﻿<!--model Tuple<IEnumerable<FYP.Models.City>,IEnumerable<FYP.Models.Country>>-->
+@model IEnumerable<FYP.Models.City>
+
+@{
+    ViewData["Title"] = "CityRankings";
+}
+
+<h1>City Rankings</h1>
+
+<div class="container text-center">
+   <!-- <button class="btn btn-primary" name="btnCities" onclick="viewCitiesCategories()">Cities</button>
+    <button class="btn btn-primary" name="btnCountries" onclick="viewCountriesCategories()">Countries</button>-->
+
+    <!--JavaScript for displaying buttons and tables-->
+    <!--reference: https://stackoverflow.com/a/17723926 -->
+    <script>
+        function viewCityGeneral() {
+            document.getElementById('CityCosts').style.display = "none";
+            document.getElementById('CityTransport').style.display = "none";
+            document.getElementById('CityGeneral').style.display = "block";
+        }
+
+        function viewCityCosts() {
+            document.getElementById('CityGeneral').style.display = "none";
+            document.getElementById('CityTransport').style.display = "none";
+            document.getElementById('CityCosts').style.display = "block";
+        }
+
+        function viewCityTransport() {
+            document.getElementById('CityCosts').style.display = "none";
+            document.getElementById('CityGeneral').style.display = "none";
+            document.getElementById('CityTransport').style.display = "block";
+        }
+
+        function viewPopulationTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "table";
+        }
+
+        function viewQualityOfLifeTable() {
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblQualityOfLife').style.display = "table";
+        }
+
+        function viewNoOfUnisTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "table";
+        }
+
+        function viewSafetyTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblSafety').style.display = "table";
+        }
+
+        function viewPollutionTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblPollution').style.display = "table";
+        }
+
+        function viewCostOfLivingTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "table";
+        }
+
+        function viewRentTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblRent').style.display = "table";
+        }
+
+        function viewPurchasingPowerTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "table";
+        }
+
+        function viewTrafficTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "table";
+        }
+
+        function viewLightRailLinesTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "table";
+        }
+
+        function viewNoOfAirportsTable() {
+            document.getElementById('tblQualityOfLife').style.display = "none";
+            document.getElementById('tblNoOfUnis').style.display = "none";
+            document.getElementById('tblSafety').style.display = "none";
+            document.getElementById('tblPollution').style.display = "none";
+            document.getElementById('tblCostOfLiving').style.display = "none";
+            document.getElementById('tblRent').style.display = "none";
+            document.getElementById('tblPurchasingPower').style.display = "none";
+            document.getElementById('tblTraffic').style.display = "none";
+            document.getElementById('tblLightRailLines').style.display = "none";
+            document.getElementById('tblPopulation').style.display = "none";
+            document.getElementById('tblNoOfAirports').style.display = "table";
+        }
+    </script>
+    <br />
+
+    <!--Cities Rankings Categories-->
+    <div class="container text-center" id="CitiesCategories">
+        <button class="btn btn-primary" name="btnCityGeneral" onclick="viewCityGeneral()">General</button>
+        <button class="btn btn-primary" name="btnCityCost" onclick="viewCityCosts()">Costs</button>
+        <button class="btn btn-primary" name="btnCityTransport" onclick="viewCityTransport()">Transport</button>
+    </div>
+    <br />
+    <div class="container text-center" id="CityGeneral" style="display:none;">
+        <button class="btn btn-primary" name="btnCityPopulation" onclick="viewPopulationTable()">Population</button>
+        <button class="btn btn-primary" name="btnQualityOfLife" onclick="viewQualityOfLifeTable()">Quality of Life Index</button>
+        <button class="btn btn-primary" name="btnNoOfUnis" onclick="viewNoOfUnisTable()">Number of Universities</button>
+        <button class="btn btn-primary" name="btnSafety" onclick="viewSafetyTable()">Safety Index</button>
+        <button class="btn btn-primary" name="btnPollution" onclick="viewPollutionTable()">Pollution Index</button>
+    </div>
+
+    <div class="container text-center" id="CityCosts" style="display:none;">
+        <button class="btn btn-primary" name="btnCostOfLiving" onclick="viewCostOfLivingTable()">Cost of Living Index</button>
+        <button class="btn btn-primary" name="btnRent" onclick="viewRentTable()">Rent Index</button>
+        <button class="btn btn-primary" name="btnPurchasingPower" onclick="viewPurchasingPowerTable()">Purchasing Power Index</button>
+    </div>
+
+    <div class="container text-center" id="CityTransport" style="display:none;">
+        <button class="btn btn-primary" name="btnTrafficRate" onclick="viewTrafficTable()">Traffic Rate</button>
+        <button class="btn btn-primary" name="btnNoOfLightRailLines" onclick="viewLightRailLinesTable()">Number of Light Rail Lines</button>
+        <button class="btn btn-primary" name="btnNoOfAirports" onclick="viewNoOfAirportsTable()">Number of Airports</button>
+    </div>
+    <br />
+
+    <!--Ranking Tables-->
+    @{ int populationRank = 0;
+        int qualityOfLifeRank = 0;
+        int NoOfUnisRank = 0;
+        int SafetyRank = 0;
+        int PollutionRank = 0;
+        int costOfLivingRank = 0;
+        int rentRank = 0;
+        int purchasingPowerRank = 0;
+        int trafficRank = 0;
+        int lightRailLinesRank = 0;
+        int noOfAirportsRank = 0;
+    } <!--Source: https://stackoverflow.com/a/25698547 -->
+
+    <table class="table" id="tblPopulation" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Population</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.Population))
+            {
+                <tr>
+                    <td>
+                        @(populationRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Population)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblQualityOfLife" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Quality of Life Index</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.QualityOfLifeIndex))
+            {
+                <tr>
+                    <td>
+                        @(qualityOfLifeRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QualityOfLifeIndex)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblNoOfUnis" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Number of Universities</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.NoOfUniversities))
+            {
+                <tr>
+                    <td>
+                        @(NoOfUnisRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoOfUniversities)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblSafety" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Safety Index</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.SafetyIndex))
+            {
+                <tr>
+                    <td>
+                        @(SafetyRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SafetyIndex)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblPollution" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Pollution</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.PollutionIndex))
+            {
+                <tr>
+                    <td>
+                        @(PollutionRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PollutionIndex)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblCostOfLiving" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Cost of Living Index</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.CostOfLivingIndex))
+            {
+                <tr>
+                    <td>
+                        @(costOfLivingRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CostOfLivingIndex)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblRent" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Rent Index</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.RentIndex))
+            {
+                <tr>
+                    <td>
+                        @(rentRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RentIndex)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblPurchasingPower" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Purchasing Power Index</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.PurchasingPowerIndex))
+            {
+                <tr>
+                    <td>
+                        @(purchasingPowerRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PurchasingPowerIndex)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblTraffic" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Traffic Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.TrafficRate))
+            {
+                <tr>
+                    <td>
+                        @(trafficRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrafficRate)%
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblLightRailLines" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Number of Light Rail Lines</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.LightRailLines))
+            {
+                <tr>
+                    <td>
+                        @(lightRailLinesRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LightRailLines)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" id="tblNoOfAirports" style="display:none;">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>City</th>
+                <th>Number of Airports</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderByDescending(m => m.NoOfAirports))
+            {
+                <tr>
+                    <td>
+                        @(noOfAirportsRank += 1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoOfAirports)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
