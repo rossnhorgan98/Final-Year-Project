@@ -26,9 +26,45 @@ namespace FYP.Controllers
             return View();
         }
 
-        public IActionResult Explore()
+        public async Task<IActionResult> Explore()
         {
-            return View();
+            return View(await _context.Country.ToListAsync());
+        }
+
+        public async Task<IActionResult> CountryProfile(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var country = await _context.Country
+                .Include(c => c.City)
+                .FirstOrDefaultAsync(m => m.CountryId == id);
+            if (country == null)
+            {
+                return NotFound();
+            }
+
+            return View(country);
+        }
+
+        public async Task<IActionResult> CityProfile(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var city = await _context.City
+                .Include(c => c.Country)
+                .FirstOrDefaultAsync(m => m.CityId == id);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            return View(city);
         }
 
         public IActionResult Map()

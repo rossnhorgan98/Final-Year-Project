@@ -39,6 +39,8 @@ namespace FYP.Models
 
                 entity.Property(e => e.ClimateDescription).IsUnicode(false);
 
+                entity.Property(e => e.ClimateImage).IsUnicode(false);
+
                 entity.Property(e => e.ClimateType)
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -52,6 +54,8 @@ namespace FYP.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeneralDescription).IsUnicode(false);
+
+                entity.Property(e => e.GeneralPicture).IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -72,6 +76,8 @@ namespace FYP.Models
 
                 entity.Property(e => e.TransportDescription).IsUnicode(false);
 
+                entity.Property(e => e.TransportImage).IsUnicode(false);
+
                 entity.HasOne(d => d.Country)
                     .WithMany(p => p.City)
                     .HasForeignKey(d => d.CountryId)
@@ -87,6 +93,8 @@ namespace FYP.Models
 
                 entity.Property(e => e.AverageWage).HasColumnType("decimal(18, 2)");
 
+                entity.Property(e => e.Continent).HasMaxLength(50).IsUnicode(false).IsRequired();
+
                 entity.Property(e => e.CorporationTax).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.Currency)
@@ -99,6 +107,8 @@ namespace FYP.Models
 
                 entity.Property(e => e.Gdp).HasColumnName("GDP");
 
+                entity.Property(e => e.Flag).IsUnicode(false);
+
                 entity.Property(e => e.Hdi)
                     .HasColumnName("HDI")
                     .HasColumnType("decimal(18, 3)");
@@ -109,6 +119,8 @@ namespace FYP.Models
                     .HasColumnName("Language(s)")
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Map).IsUnicode(false);
 
                 entity.Property(e => e.MaxIncomeTax).HasColumnType("decimal(18, 2)");
 
@@ -167,6 +179,11 @@ namespace FYP.Models
                 entity.Property(e => e.Username)
                     .IsRequired()
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserType)
+                    .IsRequired()
+                    .HasMaxLength(10)
                     .IsUnicode(false);
             });
 

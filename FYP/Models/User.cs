@@ -16,5 +16,6 @@ namespace FYP.Models
         public string HomeCity { get; set; }
         public string CurrentCountry { get; set; }
         public string CurrentCity { get; set; }
+        public string UserType { get; set; }
     }
 }

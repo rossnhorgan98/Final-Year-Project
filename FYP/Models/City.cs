@@ -12,7 +12,7 @@ namespace FYP.Models
         public string Name { get; set; }
         public int CountryId { get; set; }
         public int? Population { get; set; }
-        public byte[] GeneralPicture { get; set; }
+        public string? GeneralPicture { get; set; }
         public string GeneralDescription { get; set; }
         public decimal? QualityOfLifeIndex { get; set; }
         public string Forum { get; set; }
@@ -20,12 +20,12 @@ namespace FYP.Models
         public decimal? RentIndex { get; set; }
         public decimal? PurchasingPowerIndex { get; set; }
         public string ClimateType { get; set; }
-        public byte[] ClimateImage { get; set; }
+        public string? ClimateImage { get; set; }
         public string ClimateDescription { get; set; }
         public decimal? TrafficRate { get; set; }
         public int? LightRailLines { get; set; }
         public int? NoOfAirports { get; set; }
-        public byte[] TransportImage { get; set; }
+        public string? TransportImage { get; set; }
         public string TransportDescription { get; set; }
         public int? NoOfUniversities { get; set; }
         public decimal? SafetyIndex { get; set; }

@@ -1,0 +1,40 @@
+﻿@model FYP.Models.City
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <img src="@Url.Content(Model.GeneralPicture)" width="750" height="350" />
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
+    <br />
+    <h2>@Html.DisplayFor(model => model.Country.Name)</h2>
+
+    <br />
+    <p><i>Population: @Html.DisplayFor(model => model.Population)</i></p>
+    <br />
+    <p> @Html.DisplayFor(model => model.GeneralDescription)</p>
+    <br />
+    <h3>Quick Facts</h3>
+    <ul>
+        <li> Quality of Life Index: @Html.DisplayFor(model => model.QualityOfLifeIndex)</li>
+        <li>Cost of Living Index: @Html.DisplayFor(model => model.CostOfLivingIndex) </li>
+        <li>Rent Index: @Html.DisplayFor(model => model.RentIndex)</li>
+        <li>Purchasing Power: @Html.DisplayFor(model => model.PurchasingPowerIndex)</li>
+        <li>Number of Universities: @Html.DisplayFor(model => model.NoOfUniversities)</li>
+    </ul>
+    <br />
+
+    <h3>Climate</h3>
+    <p>
+        Climate Type: @Html.DisplayFor(model => model.ClimateType)<br />
+        <img src="@Url.Content(Model.ClimateImage)" width="500" height="200" /> <br />
+        @Html.DisplayFor(model => model.ClimateDescription)
+    </p>
+    <br />
+    <h3>Transportation</h3>
+    <p>
+        Traffic Rate: @Html.DisplayFor(model => model.TrafficRate)%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number of Airports: @Html.DisplayFor(model => model.NoOfAirports)<br />
+        Number of Light Rail Lines: @Html.DisplayFor(model => model.LightRailLines)<br /><img src="@Url.Content(Model.TransportImage)" width="500" height="200" /> <br />
+        @Html.DisplayFor(model => model.TransportDescription)
+    </p>

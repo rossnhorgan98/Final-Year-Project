@@ -473,7 +473,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.OrderByDescending(m => m.HealthcareRanking))
+            @foreach (var item in Model.OrderBy(m => m.HealthcareRanking))
             {
                 <tr>
                     <td>

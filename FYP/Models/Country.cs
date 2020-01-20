@@ -15,9 +15,8 @@ namespace FYP.Models
 
         public int CountryId { get; set; }
         public string Name { get; set; }
-        public int? NoOfCities { get; set; }
-        public byte[] Flag { get; set; }
-        public byte[] Map { get; set; }
+        public string? Flag { get; set; }
+        public string? Map { get; set; }
         public int? Population { get; set; }
         public string LanguageS { get; set; }
         public string Currency { get; set; }
@@ -39,6 +38,7 @@ namespace FYP.Models
         public decimal? CorporationTax { get; set; }
         public string TaxDescription { get; set; }
         public decimal? HomicideRate { get; set; }
+        public string Continent { get; set; }
 
         public virtual ICollection<City> City { get; set; }
     }

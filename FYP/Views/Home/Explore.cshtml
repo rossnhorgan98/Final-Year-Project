@@ -1,56 +1,40 @@
-﻿@{
+﻿@model IEnumerable<FYP.Models.Country>
+
+@{
     ViewData["Title"] = "Explore";
 }
 
 <h1>Explore.</h1>
+<br />
 
-<div class="container float-left">
+<div class="container text-left">
     <h2>Select Country</h2>
     <h3>Europe</h3>
     <ul class="list-group-horizontal">
-        <li class="nav-item"><a>United Kingdom</a></li>
-        <li>France</li>
-        <li>Germany</li>
-        <li>Spain</li>
-        <li>Italy</li>
-        <li>Netherlands</li>
-        <li>Sweden</li>
-        <li>Norway</li>
-        <li>Denmark</li>
-        <li>Ireland</li>
-        <li>Belgium</li>
-        <li>Switzerland</li>
-        <li>Austria</li>
-        <li>Finland</li>
-        <li>Iceland</li>
-        <li>Portugal</li>
-        <li>Czechia</li>
-        <li>Luxembourg</li>
+        @foreach (var item in Model.Where(c => c.Continent.Equals("Europe")))
+        {
+            <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId">@Html.DisplayFor(modelItem => item.Name)</a></li>
+        }
     </ul>
-    <h3>North America</h3>
-    <ul class="list-group-horizontal">
-        <li>United States</li>
-        <li>Canada</li>
-    </ul>
-    <h3>Oceania</h3>
-    <ul class="list-group-horizontal">
-        <li>Australia</li>
-        <li>New Zealand</li>
-    </ul>
-    <h3>Asia</h3>
-    <ul class="list-group-horizontal">
-        <li>Japan</li>
-        <li>South Korea</li>
-        <li>Singapore</li>
-    </ul>
-</div>
-
-<div class="container border-right">
-    <h2>Selected country</h2>
-    <ul>
-        <li>City A</li>
-        <li>City B</li>
-        <li>City C</li>
-        <li>etc.</li>
-    </ul>
-</div>
+        <h3>North America</h3>
+        <ul class="list-group-horizontal">
+            @foreach (var item in Model.Where(c => c.Continent.Equals("North America")))
+            {
+                <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId">@Html.DisplayFor(modelItem => item.Name)</a></li>
+            }
+        </ul>
+        <h3>Oceania</h3>
+        <ul class="list-group-horizontal">
+            @foreach (var item in Model.Where(c => c.Continent.Equals("Oceania")))
+            {
+                <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId">@Html.DisplayFor(modelItem => item.Name)</a></li>
+            }
+        </ul>
+        <h3>Asia</h3>
+        <ul class="list-group-horizontal">
+            @foreach (var item in Model.Where(c => c.Continent.Equals("Asia")))
+            {
+                <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId">@Html.DisplayFor(modelItem => item.Name)</a></li>
+            }
+        </ul>
+    </div>
