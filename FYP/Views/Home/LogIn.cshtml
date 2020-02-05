@@ -1,0 +1,42 @@
+﻿@model FYP.Models.User
+
+@{
+    ViewData["Title"] = "Log In";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Log In</h1><br />
+<form method="post" asp-controller="Home" asp-action="LogIn">
+    Username:&nbsp;<input id="loginUsername" type="text" asp-for="Username" /> <br /> <br />
+    Password:&nbsp;<input  id="loginPassword" type="password" asp-for="Password" /> <br /> <br />
+    <br />
+    <button class="btn btn-primary" id="btnLogin">Log In</button>&nbsp;&nbsp;
+    <a onclick="showRegister()">Don't have an account?</a>
+</form>
+<br />
+<script>
+    function showRegister() {
+        document.getElementById("register").style.display = "block";
+    }
+
+    function showCurrent() {
+        document.getElementById("current").style.display = "block";
+    }
+</script>
+<br />
+<form method="post" asp-controller="Home" asp-action="Register" id="register" style="display:none;">
+    <h5>Enter your details below:</h5>  <br />
+    Email address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="Email" id="email" type="text" /> <br /> <br />
+    Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="Username" id="registerUsername" type="text" /> <br /> <br />
+    Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="Password" id="regitsterPassword" type="password" /> <br /> <br />
+    Confirm password:&nbsp;&nbsp;&nbsp;<input asp-for="ConfirmPassword" id="confirmPassword" type="password" /> <br /> <br />
+    <br />
+    Home Country:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="HomeCountry" id="homeCountry" type="text" /> <br /><br />
+    Home City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="HomeCity" id="homeCity" type="text" /> <br /><br />
+    <input id="chkCurrent" onchange="showCurrent()" type="checkbox" />Do you currently live somewhere else? <br /><br />
+    <div id="current" style="display:none;">
+        Current Country:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="CurrentCountry" id="currentCountry" type="text" /> <br /><br />
+        Current City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input asp-for="CurrentCity" id="currentCity" type="text" /> <br /><br />
+    </div>
+    <button class="btn btn-primary" type="submit" id="btnRegister">Register</button>
+</form>

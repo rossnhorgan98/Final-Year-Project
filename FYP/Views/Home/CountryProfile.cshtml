@@ -5,46 +5,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <img src="@Url.Content(Model.Flag)" width="750" height="350" />
-    <h1>@Html.DisplayFor(model => model.Name)</h1>
-    <img src="@Url.Content(Model.Map)" />
-    <br />
-    <h3>Cities:</h3>
-    <ul>
-        <!--Resource: https://stackoverflow.com/a/15171755 -->
-        @foreach (var city in Model.City)
-        {
-            <li><a asp-controller="Home" asp-action="CityProfile" asp-route-id="@city.CityId">@Html.DisplayFor(model => city.Name)</a></li>
-        }
-    </ul>
+<img src="@Url.Content(Model.Flag)" width="700" height="350" />
+<h1>@Html.DisplayFor(model => model.Name)</h1><br />
+<p><i>Population: @Html.DisplayFor(model => model.Population)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Language(s): @Html.DisplayFor(model => model.LanguageS)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Currency: @Html.DisplayFor(model => model.Currency)</i></p>
+<img src="@Url.Content(Model.Map)" />
+<br />
+<h3>Cities:</h3>
+<ul>
+    <!--Resource: https://stackoverflow.com/a/15171755 -->
+    @foreach (var city in Model.City)
+    {
+        <li><a asp-controller="Home" asp-action="CityProfile" asp-route-id="@city.CityId">@Html.DisplayFor(model => city.Name)</a></li>
+    }
+</ul>
+<br />
+<p> @Html.DisplayFor(model => model.Description)</p>
+<br />
+<h3>Quick Stats</h3>
+<ul>
+    <li>Human Development Index: @Html.DisplayFor(model => model.Hdi)</li>
+    <li>Gross Domestic Product: $@Html.DisplayFor(model => model.Gdp) million</li>
+    <li>International Helathcare System Ranking: @Html.DisplayFor(model => model.HealthcareRanking)</li>
+    <li>Average Annual Tuition Fees: $@Html.DisplayFor(model => model.AvgUniCost)</li>    
+    <li>Homicide Rate: @Html.DisplayFor(model => model.HomicideRate)</li>
+</ul>
+<br />
 
-    <br />
-    <p><i>Population: @Html.DisplayFor(model => model.Population)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Language(s): @Html.DisplayFor(model => model.LanguageS)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Currency: @Html.DisplayFor(model => model.Currency)</i></p>
-    <br />
-    <p> @Html.DisplayFor(model => model.Description)</p>
-    <br />
-    <h3>Quick Facts</h3>
-    <p>
-        Human Development Index: @Html.DisplayFor(model => model.Hdi)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gross Domestic Product: $@Html.DisplayFor(model => model.Gdp) million  <br />
-        International Helathcare System Ranking: @Html.DisplayFor(model => model.HealthcareRanking)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average Annual Salary: $@Html.DisplayFor(model => model.AverageWage) <br />
-        Average Weekly Work Hours: @Html.DisplayFor(model => model.AvgWorkHours)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Minnimum Annual Leave:  @Html.DisplayFor(model => model.MinAnnualLeave) days <br />
-        Minimum Wage: $@Html.DisplayFor(model => model.MinnimumWage) per hour&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unemployment Rate: @Html.DisplayFor(model => model.UnemploymentRate)% <br />
-        Pension Index: @Html.DisplayFor(model => model.PensionIndex)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Homicide Rate: @Html.DisplayFor(model => model.HomicideRate)
-    </p>
-    <br />
+<h3>Work</h3>
+<ul>
+    <li>Average Annual Salary: $@Html.DisplayFor(model => model.AverageWage)</li>
+    <li>Average Weekly Work Hours: @Html.DisplayFor(model => model.AvgWorkHours)</li>
+    <li>Minnimum Annual Leave:  @Html.DisplayFor(model => model.MinAnnualLeave) days</li>
+    <li>Minimum Wage: $@Html.DisplayFor(model => model.MinnimumWage) per hour</li>
+    <li>Unemployment Rate: @Html.DisplayFor(model => model.UnemploymentRate)%</li>
+    <li>Pension Index: @Html.DisplayFor(model => model.PensionIndex)</li>
+</ul>
+<br />
+<h3>Taxation</h3>
+<ul>
+    <li>Maximum Income Tax: @Html.DisplayFor(model => model.MaxIncomeTax)%</li>
+    <li>Minnimum Income Tax: @Html.DisplayFor(model => model.MinIncomeTax)%</li>
+    <li>Standard VAT Rate: @Html.DisplayFor(model => model.Vat)%</li>
+    <li>Standard Corporation Tax Rate: @Html.DisplayFor(model => model.CorporationTax)%</li>
+</ul>
 
-    <h3>Education</h3>
-    <p>
-        Average Annual Tuition Fees: $@Html.DisplayFor(model => model.AvgUniCost)<br />
-        @Html.DisplayFor(model => model.EducationDescription)
-    </p>
-    <br />
-    <h3>Taxation</h3>
-    <p>
-        Maximum Income Tax: @Html.DisplayFor(model => model.MaxIncomeTax)%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Minnimum Income Tax: @Html.DisplayFor(model => model.MinIncomeTax)%<br />
-        Standard VAT Rate: @Html.DisplayFor(model => model.Vat)%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Standard Corporation Tax Rate: @Html.DisplayFor(model => model.CorporationTax)%<br />
-        @Html.DisplayFor(model => model.TaxDescription)
-    </p>
 
 
 

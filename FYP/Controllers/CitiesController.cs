@@ -58,7 +58,7 @@ namespace FYP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CityId,Name,CountryId,Population,GeneralPicture,GeneralDescription,QualityOfLifeIndex,Forum,CostOfLivingIndex,RentIndex,PurchasingPowerIndex,ClimateType,ClimateImage,ClimateDescription,TrafficRate,LightRailLines,NoOfAirports,TransportImage,TransportDescription,NoOfUniversities,SafetyIndex,PollutionIndex")] City city)
+        public async Task<IActionResult> Create([Bind("CityId,Name,CountryId,Population,GeneralPicture,Description,QualityOfLifeIndex,CostOfLivingIndex,RentIndex,PurchasingPowerIndex,ClimateType,ClimateImage,ClimateDescription,TrafficRate,LightRailLines,NoOfAirports,TransportImage,NoOfUniversities,SafetyIndex,PollutionIndex")] City city)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace FYP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CityId,Name,CountryId,Population,GeneralPicture,GeneralDescription,QualityOfLifeIndex,Forum,CostOfLivingIndex,RentIndex,PurchasingPowerIndex,ClimateType,ClimateImage,ClimateDescription,TrafficRate,LightRailLines,NoOfAirports,TransportImage,TransportDescription,NoOfUniversities,SafetyIndex,PollutionIndex")] City city)
+        public async Task<IActionResult> Edit(int id, [Bind("CityId,Name,CountryId,Population,GeneralPicture,Description,QualityOfLifeIndex,CostOfLivingIndex,RentIndex,PurchasingPowerIndex,ClimateType,ClimateImage,ClimateDescription,TrafficRate,LightRailLines,NoOfAirports,TransportImage,NoOfUniversities,SafetyIndex,PollutionIndex")] City city)
         {
             if (id != city.CityId)
             {

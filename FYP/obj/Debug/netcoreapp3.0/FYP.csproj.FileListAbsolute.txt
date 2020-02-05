@@ -122,7 +122,6 @@ C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAna
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\FYP.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Compare.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Map.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Explore.cshtml.g.cs
@@ -146,3 +145,7 @@ C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Cou
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\CityProfile.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\CountryProfile.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Sources.cshtml.g.cs
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Admin.cshtml.g.cs
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\LogIn.cshtml.g.cs
+C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\FYP.MvcApplicationPartsAssemblyInfo.cache

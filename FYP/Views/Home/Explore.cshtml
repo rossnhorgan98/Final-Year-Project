@@ -2,39 +2,41 @@
 
 @{
     ViewData["Title"] = "Explore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<body>
 <h1>Explore.</h1>
 <br />
 
 <div class="container text-left">
-    <h2>Select Country</h2>
     <h3>Europe</h3>
     <ul class="list-group-horizontal">
         @foreach (var item in Model.Where(c => c.Continent.Equals("Europe")))
         {
-            <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId">@Html.DisplayFor(modelItem => item.Name)</a></li>
+            <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId"><img src="@Url.Content(item.Flag)" width="35" height="20" />&nbsp;@Html.DisplayFor(modelItem => item.Name)</a></li>
         }
     </ul>
-        <h3>North America</h3>
-        <ul class="list-group-horizontal">
-            @foreach (var item in Model.Where(c => c.Continent.Equals("North America")))
-            {
-                <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId">@Html.DisplayFor(modelItem => item.Name)</a></li>
-            }
-        </ul>
-        <h3>Oceania</h3>
-        <ul class="list-group-horizontal">
-            @foreach (var item in Model.Where(c => c.Continent.Equals("Oceania")))
-            {
-                <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId">@Html.DisplayFor(modelItem => item.Name)</a></li>
-            }
-        </ul>
-        <h3>Asia</h3>
-        <ul class="list-group-horizontal">
-            @foreach (var item in Model.Where(c => c.Continent.Equals("Asia")))
-            {
-                <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId">@Html.DisplayFor(modelItem => item.Name)</a></li>
-            }
-        </ul>
-    </div>
+    <h3>North America</h3>
+    <ul class="list-group-horizontal">
+        @foreach (var item in Model.Where(c => c.Continent.Equals("North America")))
+        {
+            <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId"><img src="@Url.Content(item.Flag)" width="35" height="20" />&nbsp;@Html.DisplayFor(modelItem => item.Name)</a></li>
+        }
+    </ul>
+    <h3>Oceania</h3>
+    <ul class="list-group-horizontal">
+        @foreach (var item in Model.Where(c => c.Continent.Equals("Oceania")))
+        {
+            <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId"><img src="@Url.Content(item.Flag)" width="35" height="20" />&nbsp;@Html.DisplayFor(modelItem => item.Name)</a></li>
+        }
+    </ul>
+    <h3>Asia</h3>
+    <ul class="list-group-horizontal">
+        @foreach (var item in Model.Where(c => c.Continent.Equals("Asia")))
+        {
+            <li class="nav-item"><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId"><img src="@Url.Content(item.Flag)" width="35" height="20" />&nbsp;@Html.DisplayFor(modelItem => item.Name)</a></li>
+        }
+    </ul>
+</div>
+</body>

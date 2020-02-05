@@ -2,12 +2,13 @@
    Scaffold-DbContext “Server=DESKTOP2;Database=Inventory;Integrated Security=True” Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models */
 
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace FYP.Models
 {
-    public partial class InventoryContext : DbContext
+    public partial class InventoryContext : IdentityDbContext
     {
         public InventoryContext()
         {
@@ -33,6 +34,8 @@ namespace FYP.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<City>(entity =>
             {
                 entity.Property(e => e.CityId).HasColumnName("CityID");
@@ -49,11 +52,7 @@ namespace FYP.Models
 
                 entity.Property(e => e.CountryId).HasColumnName("CountryID");
 
-                entity.Property(e => e.Forum)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GeneralDescription).IsUnicode(false);
+                entity.Property(e => e.Description).IsUnicode(false);
 
                 entity.Property(e => e.GeneralPicture).IsUnicode(false);
 
@@ -73,8 +72,6 @@ namespace FYP.Models
                 entity.Property(e => e.SafetyIndex).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.TrafficRate).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.TransportDescription).IsUnicode(false);
 
                 entity.Property(e => e.TransportImage).IsUnicode(false);
 
@@ -102,8 +99,6 @@ namespace FYP.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Description).IsUnicode(false);
-
-                entity.Property(e => e.EducationDescription).IsUnicode(false);
 
                 entity.Property(e => e.Gdp).HasColumnName("GDP");
 
@@ -134,8 +129,6 @@ namespace FYP.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.PensionIndex).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.TaxDescription).IsUnicode(false);
 
                 entity.Property(e => e.UnemploymentRate).HasColumnType("decimal(18, 2)");
 

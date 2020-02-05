@@ -55,7 +55,7 @@ namespace FYP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,Username,Email,Password,HomeCountry,HomeCity,CurrentCountry,CurrentCity")] User user)
+        public async Task<IActionResult> Create([Bind("UserId,Username,Email,Password,HomeCountry,HomeCity,CurrentCountry,CurrentCity,UserType")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace FYP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Email,Password,HomeCountry,HomeCity,CurrentCountry,CurrentCity")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,Username,Email,Password,HomeCountry,HomeCity,CurrentCountry,CurrentCity,UserType")] User user)
         {
             if (id != user.UserId)
             {

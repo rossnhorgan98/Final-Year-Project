@@ -1,3 +1,104 @@
-﻿@page
+﻿@model IEnumerable<FYP.Models.City>
+
 @{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+    <div class="container text-center">
+        <!--<button class="btn btn-primary" name="btnCities" onclick="viewCitiesCategories()">Cities</button>
+        <button class="btn btn-primary" name="btnCountries" onclick="viewCountriesCategories()">Countries</button>-->
+
+        <div class="container text-center" id="compareCountries">
+            <form>
+            <h2>Select cities to compare</h2>
+                <!--asp-controller="Home" asp-action="Compare"-->
+                <select>
+                    @foreach (var item in Model)
+                    {//asp-for="Name" asp-items="(new SelectList(Model.Name))" id="cityA">
+                        <option>@Html.DisplayFor(modelItem => item.Name)</option>
+                    }
+            </select>
+            <!-- <select asp-for="Name" asp-items="Model.CityList" id="cityA">
+
+     </select>-->
+
+            <select>
+                @foreach (var item in Model)
+                { //asp-for="Name" asp-items="(new SelectList(Model.Name))" id="cityB">
+                    <option>@Html.DisplayFor(modelItem => item.Name)</option>
+                }
+            </select>
+            </form><br />
+                <button class="btn btn-primary" onclick="compare()">Compare</button>
+          
+        </div>
+
+        <script>
+            function compare() {
+                /*var selectA = document.getElementById("cityA");
+                var selectB = document.getElementById("cityB");
+
+                var jsCityA = selectA.options[select.selectedIndex].text;
+                var jsCityB = selectB.options[select.selectedIndex].text;*/
+
+                document.getElementById('showA').style.display = "block";
+               // document.getElementById('showB').style.display = "block";
+
+                //document.getElementById('aName').textContent = city;
+                         }
+        </script>
+
+        <div class="container text-center" style="display:none;" id="showA">
+            <div style="float:left;">
+                <h3 id="aName"></h3><br />
+                <h5>General</h5>
+                <ul>
+                    <li>Population: </li>
+                    <li>Quality of Life Index: </li>
+                    <li>Climate Type: </li>
+                    <li>Safety Index: </li>
+                    <li>Pollution Index: </li>
+                </ul> 
+                <h5>Cost</h5>
+                <ul>
+                    <li>Cost of Living Index: </li>
+                    <li>Rent Index: </li>
+                    <li>Purchasing Power Index: </li>
+                </ul>
+                <h5>Transport</h5>
+                <ul>
+                    <li>Traffic Rate:</li>
+                    <li>Number of light rail lines: </li>
+                    <li>Number of Airports: </li>
+                </ul>
+                
+            </div>
+            <div style="float:right;">
+                <h3 id="bName"></h3> <br>
+                <h5>General</h5>
+                <ul>
+                    <li>Population: </li>
+                    <li>Quality of Life Index: </li>
+                    <li>Climate Type: </li>
+                    <li>Safety Index: </li>
+                    <li>Pollution Index: </li>
+                </ul>
+                <h5>Cost</h5>
+                <ul>
+                    <li>Cost of Living Index: </li>
+                    <li>Rent Index: </li>
+                    <li>Purchasing Power Index: </li>
+                </ul>
+                <h5>Transport</h5>
+                <ul>
+                    <li>Traffic Rate:</li>
+                    <li>Number of light rail lines: </li>
+                    <li>Number of Airports: </li>
+                </ul>
+            </div>
+        </div>
+
+      
+    </div>
+

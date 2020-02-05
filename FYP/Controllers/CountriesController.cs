@@ -55,7 +55,7 @@ namespace FYP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CountryId,Name,NoOfCities,Flag,Map,Population,LanguageS,Currency,Hdi,Gdp,Description,HealthcareRanking,AverageWage,AvgWorkHours,MinAnnualLeave,MinnimumWage,UnemploymentRate,PensionIndex,AvgUniCost,EducationDescription,MaxIncomeTax,MinIncomeTax,Vat,CorporationTax,TaxDescription,HomicideRate")] Country country)
+        public async Task<IActionResult> Create([Bind("CountryId,Name,Flag,Map,Population,LanguageS,Currency,Hdi,Gdp,Description,HealthcareRanking,AverageWage,AvgWorkHours,MinAnnualLeave,MinnimumWage,UnemploymentRate,PensionIndex,AvgUniCost,EducationDescription,MaxIncomeTax,MinIncomeTax,Vat,CorporationTax,HomicideRate,Continent")] Country country)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace FYP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CountryId,Name,NoOfCities,Flag,Map,Population,LanguageS,Currency,Hdi,Gdp,Description,HealthcareRanking,AverageWage,AvgWorkHours,MinAnnualLeave,MinnimumWage,UnemploymentRate,PensionIndex,AvgUniCost,EducationDescription,MaxIncomeTax,MinIncomeTax,Vat,CorporationTax,TaxDescription,HomicideRate")] Country country)
+        public async Task<IActionResult> Edit(int id, [Bind("CountryId,Name,Flag,Map,Population,LanguageS,Currency,Hdi,Gdp,Description,HealthcareRanking,AverageWage,AvgWorkHours,MinAnnualLeave,MinnimumWage,UnemploymentRate,PensionIndex,AvgUniCost,EducationDescription,MaxIncomeTax,MinIncomeTax,Vat,CorporationTax,HomicideRate,Continent")] Country country)
         {
             if (id != country.CountryId)
             {

@@ -31,12 +31,10 @@ namespace FYP.Models
         public decimal? UnemploymentRate { get; set; }
         public decimal? PensionIndex { get; set; }
         public int? AvgUniCost { get; set; }
-        public string EducationDescription { get; set; }
         public decimal? MaxIncomeTax { get; set; }
         public decimal? MinIncomeTax { get; set; }
         public decimal? Vat { get; set; }
         public decimal? CorporationTax { get; set; }
-        public string TaxDescription { get; set; }
         public decimal? HomicideRate { get; set; }
         public string Continent { get; set; }
 
