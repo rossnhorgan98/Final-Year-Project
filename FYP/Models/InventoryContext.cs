@@ -2,13 +2,14 @@
    Scaffold-DbContext “Server=DESKTOP2;Database=Inventory;Integrated Security=True” Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models */
 
 using System;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace FYP.Models
 {
-    public partial class InventoryContext : IdentityDbContext
+    public partial class InventoryContext : IdentityDbContext<ApplicationUser>
     {
         public InventoryContext()
         {
@@ -21,7 +22,7 @@ namespace FYP.Models
 
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Country> Country { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -74,6 +75,10 @@ namespace FYP.Models
                 entity.Property(e => e.TrafficRate).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.TransportImage).IsUnicode(false);
+
+                entity.Property(e => e.Latitude).HasColumnType("float");
+
+                entity.Property(e => e.Longitude).HasColumnType("float");
 
                 entity.HasOne(d => d.Country)
                     .WithMany(p => p.City)
@@ -135,50 +140,7 @@ namespace FYP.Models
                 entity.Property(e => e.Vat)
                     .HasColumnName("VAT")
                     .HasColumnType("decimal(18, 2)");
-            });
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.Property(e => e.UserId)
-                    .HasColumnName("UserID")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.CurrentCity)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CurrentCountry)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.HomeCity)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.HomeCountry)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UserType)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
-            });
+            });          
 
             OnModelCreatingPartial(modelBuilder);
         }

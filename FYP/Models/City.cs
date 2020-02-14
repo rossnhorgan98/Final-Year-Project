@@ -29,9 +29,10 @@ namespace FYP.Models
         public int? NoOfUniversities { get; set; }
         public decimal? SafetyIndex { get; set; }
         public decimal? PollutionIndex { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
 
         public virtual Country Country { get; set; }
-
-        //public SelectList CityList { get; set; }
+        
     }
 }

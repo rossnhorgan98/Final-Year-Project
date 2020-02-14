@@ -15,10 +15,10 @@ namespace FYP.Controllers
     public class HomeController : Controller
     {
         private readonly InventoryContext _context;
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
-        public HomeController(InventoryContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)//, SignInManager<IdentityUser> signInManager)
+        public HomeController(InventoryContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
             this.userManager = userManager;
@@ -71,30 +71,44 @@ namespace FYP.Controllers
             return View(city);
         }
 
-        public IActionResult Map()
+        public async Task<IActionResult> Map()
         {
+            var inventoryContext = _context.City.Include(c => c.Country);
+            return View(await inventoryContext.ToListAsync());
+        }
+
+        //Reference - https://youtu.be/LZc69CEOdJI
+        public IActionResult Compare()
+        {
+            //Populate the dropdownlists with cities
+            List<City> cityList = new List<City>();
+            cityList = (from x in _context.City select x).ToList();         
+            cityList.Insert(0, new City { CityId = 0, Name = "-- Select City --" });
+            ViewBag.message = cityList;
+
             return View();
         }
 
-        
-
-        public async Task<IActionResult> Compare()
+        [HttpPost]
+        public IActionResult Compare(CompareViewModel model)
         {
+            //Reinitialise the model after posting
+            List<City> cityList = new List<City>();
+            cityList = (from x in _context.City select x).ToList();
+            cityList.Insert(0, new City { CityId = 0, Name = "-- Select City --" });
+            ViewBag.message = cityList;
 
-            var list = new City();
-           // list.CityList = new SelectList(_context.City, nameof(City.CityId), nameof(City.Name));
+            //Assign the selected cities to the cities in the database
+            var viewModel = new CompareViewModel();
 
-            //return View(list);
-            var inventoryContext = _context.City.Include(c => c.Country);
-            return View(await inventoryContext.ToListAsync());
-            //return View(_context.City.FirstOrDefault());
+            viewModel.cityA = _context.City.Include(c => c.Country)
+                                     .FirstOrDefault(m => m.CityId == model.cityA.CityId);
+
+            viewModel.cityB = _context.City.Include(c => c.Country)
+                                     .FirstOrDefault(m => m.CityId == model.cityB.CityId);
+
+            return View(viewModel);
         }
-
-       /* [HttpPost]
-        public async Task<IActionResult> Compare(City cityA, City cityB)
-        {
-
-        }*/
 
         public async Task<IActionResult> CityRankings()
         {
@@ -122,31 +136,39 @@ namespace FYP.Controllers
             return View();
         }
 
-       /* [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LogIn([Bind("UserId,Username,Email,Password,HomeCountry,HomeCity,CurrentCountry,CurrentCity,UserType")] User user)
+        public IActionResult Register()
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(user);
-        }*/
+            return View();
+        }
+
+        /* [HttpPost]
+         [ValidateAntiForgeryToken]
+         public async Task<IActionResult> LogIn([Bind("UserId,Username,Email,Password,HomeCountry,HomeCity,CurrentCountry,CurrentCity,UserType")] User user)
+         {
+             if (ModelState.IsValid)
+             {
+                 _context.Add(user);
+                 await _context.SaveChangesAsync();
+                 return RedirectToAction(nameof(Index));
+             }
+             return View(user);
+         }*/
 
         //Reference - https://csharp-video-tutorials.blogspot.com/2019/06/aspnet-core-identity-usermanager-and.html
         [HttpPost]
-        public async Task<IActionResult> Register(User model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if(ModelState.IsValid)
             {
-                var user = new IdentityUser
+                var user = new ApplicationUser
                 {
                     UserName = model.Username,
-                    Email = model.Email
-                    // = model.HomeCountry
-
+                    Email = model.Email,
+                    //homecountry = model.homecountry,
+                    //homecity = model.homecity,
+                    //currentcountry = model.currentcountry,
+                    //currentcity = model.currentcity,
+                    UserType = "user"
                 };
 
                 var result = await userManager.CreateAsync(user, model.Password);
@@ -163,7 +185,7 @@ namespace FYP.Controllers
                 }
             }
 
-            return View("LogIn", model);
+            return View(model);
         }
 
         //Reference - https://csharp-video-tutorials.blogspot.com/2019/06/show-or-hide-login-and-logout-links.html
@@ -176,12 +198,12 @@ namespace FYP.Controllers
 
         //Reference - https://csharp-video-tutorials.blogspot.com/2019/06/implementing-login-functionality-in.html
         [HttpPost]
-        public async Task<IActionResult> LogIn(User user)
+        public async Task<IActionResult> LogIn(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(
-                    user.Username, user.Password, true, false);
+                    model.Username, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
@@ -191,7 +213,7 @@ namespace FYP.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             }
 
-            return View(user);
+            return View(model);
         }
         /* if ((user.Username == null) && (user.Password == null))
          {

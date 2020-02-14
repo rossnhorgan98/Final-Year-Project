@@ -5,40 +5,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <span style="display:inline-block;">
-    <img src="@Url.Content(Model.GeneralPicture)" width="900" height="400" />
+    <img src="@Url.Content(Model.GeneralPicture)" width="1100" height="500" />
         </span>
     <h1>@Html.DisplayFor(model => model.Name), @Html.DisplayFor(model => model.Country.Name)</h1>
     <br />
     <p> @Html.DisplayFor(model => model.Description)</p>
     <br />
-    <h3>Quick Stats</h3>
-    <ul>
-        <li>Population: @Html.DisplayFor(model => model.Population)</li>
-        <li>Quality of Life Index: @Html.DisplayFor(model => model.QualityOfLifeIndex)</li>        
-        <li>Number of Universities: @Html.DisplayFor(model => model.NoOfUniversities)</li>
-    </ul>
-    <br />
-    
+    <div class="cityStuff">
+        <div class="cityGeneral">
+            <h3>General</h3>
+            <ul>
+                <li>Population: @Html.DisplayFor(model => model.Population)</li>
+                <li>Quality of Life Index: @Html.DisplayFor(model => model.QualityOfLifeIndex)</li>
+                <li>Number of Universities: @Html.DisplayFor(model => model.NoOfUniversities)</li>
+            </ul>
+
+            <br />
+        </div>
+        <div class="cityCost">
     <h3>Costs</h3>
     <ul>
         <li>Cost of Living Index: @Html.DisplayFor(model => model.CostOfLivingIndex) </li>
         <li>Rent Index: @Html.DisplayFor(model => model.RentIndex)</li>
         <li>Purchasing Power: @Html.DisplayFor(model => model.PurchasingPowerIndex)</li>
     </ul>
-
+            </div>
+    </div>
+<br /><br /><br /><br /><br />
+    <div class="climate">
     <h3>Climate</h3>
     <p>
         Climate Type: @Html.DisplayFor(model => model.ClimateType)<br />
         <img src="@Url.Content(Model.ClimateImage)" width="600" height="300" /> <br />
         @Html.DisplayFor(model => model.ClimateDescription)
     </p>
+    </div>
+
     <br />
     <h3>Transportation</h3>
-    <p>
+    <div style="align-items:center;">
+        <div style="float:left; width:400px;"  >
         <ul>
         <li>Traffic Rate: @Html.DisplayFor(model => model.TrafficRate)%</li>
         <li>Number of Airports: @Html.DisplayFor(model => model.NoOfAirports)</li>
         <li>Number of Light Rail Lines: @Html.DisplayFor(model => model.LightRailLines)</li>
-            </ul><br />
-        <img src="@Url.Content(Model.TransportImage)" width="500" height="200" /> 
-    </p>
+            </ul>
+            </div>
+        <div class="cityTransport" >
+        <img src="@Url.Content(Model.TransportImage)" width="500" height="200"/> 
+            </div>
+    </div>

@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
+@inject SignInManager<ApplicationUser> SignInManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +8,19 @@
     <title>@ViewData["Title"] - FYP</title>
     <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
     <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/grayscale.css" />
-   <!-- <link rel="stylesheet" href="~/css/site.css" />-->
+    
+     <link rel="stylesheet" href="~/css/grayscale.css" />
+
+    <!--Map view css library-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin="" />
+
+    <!--Map view javascript library-->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+
 </head>
 <body>
     <header>
@@ -47,16 +58,25 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" method="post" asp-controller="Home" asp-action="LogOut">Logout @User.Identity.Name</a>
+                                <form method="post" asp-controller="home" asp-action="Logout">
+                                    <button type="submit" style="width:auto"
+                                            class="nav-link btn btn-link py-0">
+                                        Logout @User.Identity.Name
+                                    </button>
+                                </form>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="LogIn">Log In/Register</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="LogIn">Log In</a>
                             </li>
                         }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark"  asp-controller="Home" asp-action="Register">Register</a>
+                        </li>
 
+                        @if  (SignInManager.IsSignedIn(User) && User.)
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Admin</a>
                         </li>

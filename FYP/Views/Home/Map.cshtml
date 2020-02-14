@@ -1,46 +1,28 @@
-﻿@{
+﻿@model IEnumerable<FYP.Models.City>
+
+@{
     ViewData["Title"] = "Map";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>ArcGIS API for JavaScript Hello World App</title>
-    <style>
-        html, body, #viewDiv {
-            padding: 0;
-            margin: 0;
-            height: 100%;
-            width: 100%;
-        }
-    </style>
+<h2>Select a city</h2>
+<div id="mapid"></div>
+<!--Reference: https://leafletjs.com/examples/quick-start/ -->
+<script>
+    var mymap = L.map('mapid').setView([0, 0], 2);
 
-    <link rel="stylesheet" href="~/4.14/esri/css/main.css">
-    <script src="~/4.14/"></script>
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        accessToken: 'pk.eyJ1Ijoicm9zc25ob3JnYW45OCIsImEiOiJjazZjajluZHIwc2g4M2VtdmNiYTJwM2JpIn0.g1KRBVBufFkGMy3kKFZvBw'
+    }).addTo(mymap);
+</script>
 
+@foreach (var item in Model)
+{
     <script>
-        require([
-            "~/4.14/esri/Map.js",
-            "~/4.14/esri/views/MapView.js"
-        ], function (Map, MapView) {
-
-            var map = new Map({
-                basemap: "topo-vector"
-            });
-
-            var view = new MapView({
-                container: "viewDiv",
-                map: map,
-                center: [-118.71511, 34.09042],
-                zoom: 11
-            });
-
-        });
+        var marker = L.marker([@item.Latitude, @item.Longitude]).addTo(mymap);
+        marker.bindPopup('<b><a href="/Home/CityProfile/@item.CityId" >@item.Name</a></b><br>@item.Country.Name');
     </script>
-</head>
-<body>
-    <div id="viewDiv"></div>
-</body>
-</html>
+}
+

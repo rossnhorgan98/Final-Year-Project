@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FYP.Models.City>
+﻿@model FYP.Models.CompareViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -10,95 +10,70 @@
         <button class="btn btn-primary" name="btnCountries" onclick="viewCountriesCategories()">Countries</button>-->
 
         <div class="container text-center" id="compareCountries">
-            <form>
-            <h2>Select cities to compare</h2>
-                <!--asp-controller="Home" asp-action="Compare"-->
-                <select>
-                    @foreach (var item in Model)
-                    {//asp-for="Name" asp-items="(new SelectList(Model.Name))" id="cityA">
-                        <option>@Html.DisplayFor(modelItem => item.Name)</option>
-                    }
-            </select>
-            <!-- <select asp-for="Name" asp-items="Model.CityList" id="cityA">
+                <h2>Select cities to compare</h2>
+                <form method="post" asp-controller="Home" asp-action="Compare">
+                    <select id="cityA" asp-for="cityA.CityId" asp-items="@(new SelectList(ViewBag.message,"CityId","Name"))">
+                    </select>
 
-     </select>-->
-
-            <select>
-                @foreach (var item in Model)
-                { //asp-for="Name" asp-items="(new SelectList(Model.Name))" id="cityB">
-                    <option>@Html.DisplayFor(modelItem => item.Name)</option>
-                }
-            </select>
-            </form><br />
-                <button class="btn btn-primary" onclick="compare()">Compare</button>
-          
+                    <select id="cityB" asp-for="cityB.CityId" asp-items="@(new SelectList(ViewBag.message,"CityId","Name"))">
+                    </select>
+                    <br /> <br />
+                    <button class="btn btn-primary">Compare</button>
+                </form>
         </div>
 
-        <script>
-            function compare() {
-                /*var selectA = document.getElementById("cityA");
-                var selectB = document.getElementById("cityB");
-
-                var jsCityA = selectA.options[select.selectedIndex].text;
-                var jsCityB = selectB.options[select.selectedIndex].text;*/
-
-                document.getElementById('showA').style.display = "block";
-               // document.getElementById('showB').style.display = "block";
-
-                //document.getElementById('aName').textContent = city;
-                         }
-        </script>
-
-        <div class="container text-center" style="display:none;" id="showA">
+        @if (Model != null)
+        {
+        <div class="container text-center"  id="showA">
             <div style="float:left;">
-                <h3 id="aName"></h3><br />
+                <h3 id="aName">@Model.cityA.Name</h3><br />
                 <h5>General</h5>
-                <ul>
-                    <li>Population: </li>
-                    <li>Quality of Life Index: </li>
-                    <li>Climate Type: </li>
-                    <li>Safety Index: </li>
-                    <li>Pollution Index: </li>
+                <ul style="list-style: none;">
+                    <li>Population: @Model.cityA.Population </li>
+                    <li>Quality of Life Index: @Model.cityA.QualityOfLifeIndex </li>
+                    <li>Climate Type: @Model.cityA.ClimateType</li>
+                    <li>Safety Index: @Model.cityA.SafetyIndex</li>
+                    <li>Pollution Index: @Model.cityA.PollutionIndex</li>
                 </ul> 
                 <h5>Cost</h5>
-                <ul>
-                    <li>Cost of Living Index: </li>
-                    <li>Rent Index: </li>
-                    <li>Purchasing Power Index: </li>
+                <ul style="list-style: none;">
+                    <li>Cost of Living Index: @Model.cityA.CostOfLivingIndex</li>
+                    <li>Rent Index: @Model.cityA.RentIndex</li>
+                    <li>Purchasing Power Index: @Model.cityA.PurchasingPowerIndex</li>
                 </ul>
                 <h5>Transport</h5>
-                <ul>
-                    <li>Traffic Rate:</li>
-                    <li>Number of light rail lines: </li>
-                    <li>Number of Airports: </li>
+                <ul style="list-style: none;">
+                    <li>Traffic Rate:@Model.cityA.TrafficRate</li>
+                    <li>Number of light rail lines: @Model.cityA.LightRailLines</li>
+                    <li>Number of Airports: @Model.cityA.NoOfAirports</li>
                 </ul>
                 
             </div>
             <div style="float:right;">
-                <h3 id="bName"></h3> <br>
+                <h3 id="bName">@Model.cityB.Name</h3> <br>
                 <h5>General</h5>
-                <ul>
-                    <li>Population: </li>
-                    <li>Quality of Life Index: </li>
-                    <li>Climate Type: </li>
-                    <li>Safety Index: </li>
-                    <li>Pollution Index: </li>
+                <ul style="list-style: none;">
+                    <li>Population: @Model.cityB.Population</li>
+                    <li>Quality of Life Index: @Model.cityB.QualityOfLifeIndex</li>
+                    <li>Climate Type: @Model.cityB.ClimateType</li>
+                    <li>Safety Index:@Model.cityB.SafetyIndex </li>
+                    <li>Pollution Index: @Model.cityB.PollutionIndex</li>
                 </ul>
                 <h5>Cost</h5>
-                <ul>
-                    <li>Cost of Living Index: </li>
-                    <li>Rent Index: </li>
-                    <li>Purchasing Power Index: </li>
+                <ul style="list-style: none;">
+                    <li>Cost of Living Index: @Model.cityB.CostOfLivingIndex </li>
+                    <li>Rent Index: @Model.cityB.RentIndex</li>
+                    <li>Purchasing Power Index: @Model.cityB.PurchasingPowerIndex</li>
                 </ul>
                 <h5>Transport</h5>
-                <ul>
-                    <li>Traffic Rate:</li>
-                    <li>Number of light rail lines: </li>
-                    <li>Number of Airports: </li>
+                <ul style="list-style: none;">
+                    <li>Traffic Rate: @Model.cityB.TrafficRate</li>
+                    <li>Number of light rail lines: @Model.cityB.LightRailLines</li>
+                    <li>Number of Airports: @Model.cityB.NoOfAirports</li>
                 </ul>
             </div>
         </div>
 
-      
+        }
     </div>
 
