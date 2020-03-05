@@ -90,8 +90,7 @@ namespace FYP.Models
             modelBuilder.Entity<Country>(entity =>
             {
                 entity.Property(e => e.CountryId)
-                    .HasColumnName("CountryID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("CountryID");
 
                 entity.Property(e => e.AverageWage).HasColumnType("decimal(18, 2)");
 

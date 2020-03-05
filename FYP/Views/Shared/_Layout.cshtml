@@ -5,11 +5,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>@ViewData["Title"] - FYP</title>
-    <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
-    <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.css" />
-    
-     <link rel="stylesheet" href="~/css/grayscale.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    <link rel="stylesheet" href="~/css/site.css" />
 
     <!--Map view css library-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -21,87 +21,166 @@
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
 
+    <!--Template CSS-->
+    <link rel="stylesheet" href="~/travelo/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/travelo/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/travelo/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/travelo/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/travelo/css/themify-icons.css">
+    <link rel="stylesheet" href="~/travelo/css/nice-select.css">
+    <link rel="stylesheet" href="~/travelo/css/flaticon.css">
+    <link rel="stylesheet" href="~/travelo/css/gijgo.css">
+    <link rel="stylesheet" href="~/travelo/css/animate.css">
+    <link rel="stylesheet" href="~/travelo/css/slick.css">
+    <link rel="stylesheet" href="~/travelo/css/slicknav.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
+    <link rel="stylesheet" href="~/travelo/css/style.css">
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FYP</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Explore">Explore</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Map">Map View</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Compare">Compare Cities</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CityRankings">City Rankings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CountryRankings">Country Rankings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sources">Our Sources</a>
-                        </li>
-                        <!--Reference https://csharp-video-tutorials.blogspot.com/2019/06/show-or-hide-login-and-logout-links.html -->
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <form method="post" asp-controller="home" asp-action="Logout">
-                                    <button type="submit" style="width:auto"
-                                            class="nav-link btn btn-link py-0">
-                                        Logout @User.Identity.Name
-                                    </button>
-                                </form>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="LogIn">Log In</a>
-                            </li>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark"  asp-controller="Home" asp-action="Register">Register</a>
-                        </li>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid">
+                    <div class="header_bottom_border">
+                        <div class="row align-items-center">
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a asp-controller="Home" asp-action="Index">
+                                        <img src="/Images/locationer.PNG" width="200" height="75">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="main-menu  d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li>
+                                                <a href="/Home/Index">Home</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Explore <i class="ti-angle-down"></i></a>
+                                                <ul class="submenu">
+                                                    <li><a href="/Home/Map">Cities</a></li>
+                                                    <li><a href="/Home/Explore">Countries</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">Compare <i class="ti-angle-down"></i></a>
+                                                <ul class="submenu">
+                                                    <li><a href="/Home/CompareCities">Cities</a></li>
+                                                    <li><a href="/Home/CompareCountries">Countries</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">Rankings <i class="ti-angle-down"></i></a>
+                                                <ul class="submenu">
+                                                    <li><a href="/Home/CityRankings">Cities</a></li>
+                                                    <li><a href="/Home/CountryRankings">Countries</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="/Home/Sources">Our Sources</a>
+                                            </li>
+                                        
+                                        <!--Code below is based on:
+            Show or hide login and logout links based on login status in asp.net core
+            Pragimtech
+            https://csharp-video-tutorials.blogspot.com/2019/06/show-or-hide-login-and-logout-links.html -->
+                                        @if (SignInManager.IsSignedIn(User))
+                                        {
 
-                        @if  (SignInManager.IsSignedIn(User) && User.)
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Admin</a>
-                        </li>
-                    </ul>
+                                            <li>
+                                                <a href="/Home/Admin">Administration Centre</a>
+                                            </li>
+                                            <li>
+                                                <form method="post" asp-controller="home" asp-action="Logout">
+                                                    <button type="submit" style="width:auto"
+                                                            class="nav-link btn btn-link py-0">
+                                                        Logout @User.Identity.Name
+                                                    </button>
+                                                </form>
+                                            </li>
+
+                                        }
+                                        else
+                                        {
+
+                                            <li>
+                                                <a href="/Home/LogIn">Staff Log In</a>
+                                            </li>
+
+                                        }
+                                        <!--End-->
+                                    </ul>
+                                        </nav>
+                                
+                            
+                                   </div>
+                                </div>
+                                </div>
+                            </div>
+
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
-    <div class="container">
+
+    <div class="container-fluid page-container">
+        <div class="content-wrap">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+        </div>
     </div>
 
-    <!--<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - FYP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <footer class="footer">
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | HTML Template provided by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>-->
+    </footer>
+
     <!-- <script src="~/lib/jquery/dist/jquery.min.js"></script>
      <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-     <script src="~/js/site.js" asp-append-version="true"></script>-->
+     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/vendor/jquery/jquery.min.js"></script>
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="~/js/grayscale.js" asp-append-version="true"></script>
+    <script src="~/js/grayscale.js" asp-append-version="true"></script>-->
+    <!--Template JS -->
+    <script src="~/travelo/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/travelo/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/travelo/js/popper.min.js"></script>
+    <script src="~/travelo/js/bootstrap.min.js"></script>
+    <script src="~/travelo/js/owl.carousel.min.js"></script>
+    <script src="~/travelo/js/isotope.pkgd.min.js"></script>
+    <script src="~/travelo/js/ajax-form.js"></script>
+    <script src="~/travelo/js/waypoints.min.js"></script>
+    <script src="~/travelo/js/jquery.counterup.min.js"></script>
+    <script src="~/travelo/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/travelo/js/scrollIt.js"></script>
+    <script src="~/travelo/js/jquery.scrollUp.min.js"></script>
+    <script src="~/travelo/js/wow.min.js"></script>
+    <script src="~/travelo/js/nice-select.min.js"></script>
+    <script src="~/travelo/js/jquery.slicknav.min.js"></script>
+    <script src="~/travelo/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/travelo/js/plugins.js"></script>
+    <script src="~/travelo/js/gijgo.min.js"></script>
+    <script src="~/travelo/js/slick.min.js"></script>
+    <script src="~/travelo/js/main.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

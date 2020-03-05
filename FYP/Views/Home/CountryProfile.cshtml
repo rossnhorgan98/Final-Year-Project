@@ -1,54 +1,88 @@
 ﻿@model FYP.Models.Country
 
 @{
-    ViewData["Title"] = "CountryProfile";
+    ViewData["Title"] = "Locationer - " + Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<img src="@Url.Content(Model.Flag)" width="700" height="350" />
-<h1>@Html.DisplayFor(model => model.Name)</h1><br />
-<p><i>Population: @Html.DisplayFor(model => model.Population)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Language(s): @Html.DisplayFor(model => model.LanguageS)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Currency: @Html.DisplayFor(model => model.Currency)</i></p>
-<img src="@Url.Content(Model.Map)" />
-<br />
-<h3>Cities:</h3>
-<ul>
-    <!--Resource: https://stackoverflow.com/a/15171755 -->
-    @foreach (var city in Model.City)
-    {
-        <li><a asp-controller="Home" asp-action="CityProfile" asp-route-id="@city.CityId">@Html.DisplayFor(model => city.Name)</a></li>
-    }
-</ul>
-<br />
-<p> @Html.DisplayFor(model => model.Description)</p>
-<br />
-<h3>Quick Stats</h3>
-<ul>
-    <li>Human Development Index: @Html.DisplayFor(model => model.Hdi)</li>
-    <li>Gross Domestic Product: $@Html.DisplayFor(model => model.Gdp) million</li>
-    <li>International Helathcare System Ranking: @Html.DisplayFor(model => model.HealthcareRanking)</li>
-    <li>Average Annual Tuition Fees: $@Html.DisplayFor(model => model.AvgUniCost)</li>    
-    <li>Homicide Rate: @Html.DisplayFor(model => model.HomicideRate)</li>
-</ul>
-<br />
-
-<h3>Work</h3>
-<ul>
-    <li>Average Annual Salary: $@Html.DisplayFor(model => model.AverageWage)</li>
-    <li>Average Weekly Work Hours: @Html.DisplayFor(model => model.AvgWorkHours)</li>
-    <li>Minnimum Annual Leave:  @Html.DisplayFor(model => model.MinAnnualLeave) days</li>
-    <li>Minimum Wage: $@Html.DisplayFor(model => model.MinnimumWage) per hour</li>
-    <li>Unemployment Rate: @Html.DisplayFor(model => model.UnemploymentRate)%</li>
-    <li>Pension Index: @Html.DisplayFor(model => model.PensionIndex)</li>
-</ul>
-<br />
-<h3>Taxation</h3>
-<ul>
-    <li>Maximum Income Tax: @Html.DisplayFor(model => model.MaxIncomeTax)%</li>
-    <li>Minnimum Income Tax: @Html.DisplayFor(model => model.MinIncomeTax)%</li>
-    <li>Standard VAT Rate: @Html.DisplayFor(model => model.Vat)%</li>
-    <li>Standard Corporation Tax Rate: @Html.DisplayFor(model => model.CorporationTax)%</li>
-</ul>
+    <div class="container">
 
 
+        <img src="@Url.Content(Model.Flag)" width="250" height="150" style="border:1px solid black" /><br />
+        
+
+        <div class="container text-center">
+            <h1>@Html.DisplayFor(model => model.Name)</h1><br />
+            <p><i><b>Language(s):</b> @Html.DisplayFor(model => model.LanguageS)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Currency: </b>@Html.DisplayFor(model => model.Currency)</i></p>
+            </div>
+        <br />
+        <div style="display:flex;">
+            <div style="flex:1; width:200px;">
+            <h2>Cities:</h2><br />
+            <ul class="unordered-list">
+                <!--Code below is based on:
+            MVC4 EF DB First - How to access a models foreign key (ICollection)
+            nycfdtd
+            https://stackoverflow.com/a/15171755 -->
+                @foreach (var city in Model.City.OrderByDescending(m => m.Name))
+                {
+
+                    <li><a asp-controller="Home" asp-action="CityProfile" asp-route-id="@city.CityId">@Html.DisplayFor(model => city.Name)</a></li>
+
+                }
+                <!--End-->
+            </ul>
+                </div>
+           <!-- <p> Html.DisplayFor(model => model.Description)</p>-->
+            <div style="flex:1;">
+                
+                    <img src="@Model.Map" />
+                </div>
+                </div>
+                <br />
+                <div style="display:flex">
+                    <div style="flex:1;">
+                        <h2>General</h2>
+                        <ul>
+                            <li><b>Population:</b> @Html.DisplayFor(model => model.Population)</li>
+                            <li><b>Human Development Index:</b> @Html.DisplayFor(model => model.Hdi)</li>
+                            <li><b>Gross Domestic Product:</b> $@Html.DisplayFor(model => model.Gdp) million</li>
+                            <li><b>International Helathcare System Ranking:</b> @Html.DisplayFor(model => model.HealthcareRanking)</li>
+                            <li><b>Average Annual Tuition Fees:</b> $@Html.DisplayFor(model => model.AvgUniCost)</li>
+                            <li><b>Homicide Rate:</b> @Html.DisplayFor(model => model.HomicideRate)</li>
+                        </ul>
+                        <br />
+                    </div>
+
+                    <div style="flex:1;">
+                        <h2>Work</h2>
+                        <ul>
+                            <li><b>Average Annual Salary:</b> $@Html.DisplayFor(model => model.AverageWage)</li>
+                            <li><b>Average Weekly Work Hours:</b> @Html.DisplayFor(model => model.AvgWorkHours)</li>
+                            <li><b>Minnimum Annual Leave: </b> @Html.DisplayFor(model => model.MinAnnualLeave) days</li>
+                            <li><b>Minimum Wage:</b> $@Html.DisplayFor(model => model.MinnimumWage) per hour</li>
+                            <li><b>Unemployment Rate:</b> @Html.DisplayFor(model => model.UnemploymentRate)%</li>
+                            <li><b>Pension Index: </b>@Html.DisplayFor(model => model.PensionIndex)</li>
+                        </ul>
+                        <br />
+                    </div>
+
+                    <div style="flex:1;">
+                        <h2>Taxation</h2>
+                        <ul>
+                            <li><b>Maximum Income Tax: </b>@Html.DisplayFor(model => model.MaxIncomeTax)%</li>
+                            <li><b>Minnimum Income Tax:</b> @Html.DisplayFor(model => model.MinIncomeTax)%</li>
+                            <li><b>Standard VAT Rate:</b> @Html.DisplayFor(model => model.Vat)%</li>
+                            <li><b>Standard Corporation Tax Rate:</b> @Html.DisplayFor(model => model.CorporationTax)%</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <br />
+            </div>
 
 

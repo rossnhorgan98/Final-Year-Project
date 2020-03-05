@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace FYP.Models
 {
+    /*Code below is based on:
+     Implementing login functionality in asp.net core
+     Pragimtech
+     https://csharp-video-tutorials.blogspot.com/2019/06/implementing-login-functionality-in.html */
     public class LoginViewModel
     {
         [Required]
@@ -18,4 +22,5 @@ namespace FYP.Models
         [Display(Name = "Remember Me")]
         public bool RememberMe { get; set; }
     }
+    //End
 }

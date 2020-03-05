@@ -1,0 +1,105 @@
+﻿@model FYP.Models.CompareViewModel
+
+@{
+    ViewData["Title"] = "Locationer - Compare";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container text-center">
+
+    <div class="container text-center">
+        <h2>Select countries to compare</h2>
+        <form method="post" asp-controller="Home" asp-action="CompareCountries">
+            <select  asp-for="countryA.CountryId" asp-items="@(new SelectList(ViewBag.countryList,"CountryId","Name"))">
+            </select>
+
+            <select  asp-for="countryB.CountryId" asp-items="@(new SelectList(ViewBag.countryList,"CountryId","Name"))">
+            </select>
+            <br /> <br />
+            <button class="genric-btn primary radius">Compare</button>
+        </form>
+    </div>
+
+
+    @if (Model != null)
+    {
+<div class="container text-center" style="display:flex;">
+    <div style="flex:1;">
+        <h3><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@Model.countryA.CountryId">@Model.countryA.Name</a></h3><br />
+        <h5>General</h5>
+        <ul style="list-style: none;">
+            <li>
+                <b>Population:</b> @Model.countryA.Population
+            </li>
+            <li><b>Language(s):</b> @Model.countryA.LanguageS </li>
+            <li><b>Currency:</b> @Model.countryA.Currency</li>
+            <li><b>Human Development Index:</b> @Model.countryA.Hdi</li>
+            <li><b>Gross Domestic Product:</b> $@Model.countryA.Gdp</li>
+            <li><b>International Healthcare System Ranking:</b> @Model.countryA.HealthcareRanking</li>
+            <li><b>Homicide Rate:</b> @Model.countryA.HomicideRate</li>
+            <li><b>Average Annual Univesity Cost:</b> @Model.countryA.AvgUniCost</li>
+        </ul>
+        <br />
+        <h5>Work</h5>
+        <ul style="list-style: none;">
+            <li><b>Average Annual Salary:</b> $@Model.countryA.AverageWage</li>
+            <li><b>Minnimum Annual Leave: </b>@Model.countryA.MinAnnualLeave days</li>
+            <li><b>Average working hours per week: </b>@Model.countryA.AvgWorkHours</li>
+            <li><b>Minnimum Wage:</b> $@Model.countryA.MinnimumWage per hour</li>
+            <li><b>Unemployment Rate:</b> @Model.countryA.UnemploymentRate%</li>
+            <li><b>Pension Index:</b> @Model.countryA.PensionIndex</li>
+
+        </ul>
+        <br />
+        <h5>Taxation</h5>
+        <ul style="list-style: none;">
+            <li><b>Minnimum Income Tax:</b>@Model.countryA.MinIncomeTax%</li>
+            <li><b>Maximum Income Tax:</b>@Model.countryA.MinIncomeTax%</li>
+            <li><b>Standard VAT Rate:</b>@Model.countryA.Vat%</li>
+            <li><b>Standard Corporation Tax:</b> @Model.countryA.CorporationTax%</li>
+        </ul>
+
+    </div>
+
+    <div style="flex:1;">
+        <h3><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@Model.countryB.CountryId">@Model.countryB.Name</a></h3><br />
+        <h5>General</h5>
+        <ul style="list-style: none;">
+            <li>
+                <b>Population:</b> @Model.countryB.Population
+            </li>
+            <li><b>Language(s):</b> @Model.countryB.LanguageS </li>
+            <li><b>Currency:</b> @Model.countryB.Currency</li>
+            <li><b>Human Development Index:</b> @Model.countryB.Hdi</li>
+            <li><b>Gross Domestic Product:</b> $@Model.countryB.Gdp</li>
+            <li><b>International Healthcare System Ranking:</b> @Model.countryB.HealthcareRanking</li>
+            <li><b>Homicide Rate:</b> @Model.countryB.HomicideRate</li>
+            <li><b>Average Annual Univesity Cost:</b> @Model.countryB.AvgUniCost</li>
+        </ul>
+        <br />
+        <h5>Work</h5>
+        <ul style="list-style: none;">
+            <li><b>Average Annual Salary:</b> $@Model.countryB.AverageWage</li>
+            <li><b>Minnimum Annual Leave: </b>@Model.countryB.MinAnnualLeave days</li>
+            <li><b>Average working hours per week: </b>@Model.countryB.AvgWorkHours</li>
+            <li><b>Minnimum Wage:</b> $@Model.countryB.MinnimumWage per hour</li>
+            <li><b>Unemployment Rate:</b> @Model.countryB.UnemploymentRate%</li>
+            <li><b>Pension Index:</b> @Model.countryB.PensionIndex</li>
+
+        </ul>
+        <br />
+        <h5>Taxation</h5>
+        <ul style="list-style: none;">
+            <li><b>Minnimum Income Tax:</b>@Model.countryB.MinIncomeTax%</li>
+            <li><b>Maximum Income Tax:</b>@Model.countryB.MinIncomeTax%</li>
+            <li><b>Standard VAT Rate:</b>@Model.countryB.Vat%</li>
+            <li><b>Standard Corporation Tax:</b> @Model.countryB.CorporationTax%</li>
+        </ul>
+
+    </div>
+</div>
+
+
+    }
+</div>
+

@@ -53,6 +53,12 @@ namespace FYP.Controllers
             return View(country);
         }
 
+       /* [HttpPost]
+        public IActionResult Convert(double amount, string currency)
+        {
+
+        }*/
+
         public async Task<IActionResult> CityProfile(int? id)
         {
             if (id == null)
@@ -77,37 +83,80 @@ namespace FYP.Controllers
             return View(await inventoryContext.ToListAsync());
         }
 
-        //Reference - https://youtu.be/LZc69CEOdJI
-        public IActionResult Compare()
+        /*Code below is based on:
+         ASP.NET Core MVC How To Get Selected Dropdown Value In jQuery 3.4.1
+         Haritha Computers & Technology
+         https://youtu.be/LZc69CEOdJI */
+        public IActionResult CompareCities()
         {
             //Populate the dropdownlists with cities
             List<City> cityList = new List<City>();
             cityList = (from x in _context.City select x).ToList();         
-            cityList.Insert(0, new City { CityId = 0, Name = "-- Select City --" });
-            ViewBag.message = cityList;
+            //cityList.Insert(0, new City { CityId = 0, Name = "-- Select City --" });
+            ViewBag.cityList = cityList;
 
             return View();
         }
+        //End
 
         [HttpPost]
-        public IActionResult Compare(CompareViewModel model)
+        public IActionResult CompareCities(CompareViewModel model)
         {
             //Reinitialise the model after posting
             List<City> cityList = new List<City>();
             cityList = (from x in _context.City select x).ToList();
-            cityList.Insert(0, new City { CityId = 0, Name = "-- Select City --" });
-            ViewBag.message = cityList;
+           // cityList.Insert(0, new City { CityId = 0, Name = "-- Select City --" });
+            ViewBag.cityList = cityList;
+
+            
+                //Assign the selected cities to the cities in the database
+                var viewModel = new CompareViewModel();
+
+                viewModel.cityA = _context.City.Include(c => c.Country)
+                                         .FirstOrDefault(m => m.CityId == model.cityA.CityId);
+
+                viewModel.cityB = _context.City.Include(c => c.Country)
+                                         .FirstOrDefault(m => m.CityId == model.cityB.CityId);
+
+                return View(viewModel);
+            
+        }
+
+        /*Code below is based on:
+        ASP.NET Core MVC How To Get Selected Dropdown Value In jQuery 3.4.1
+        Haritha Computers & Technology
+        https://youtu.be/LZc69CEOdJI */
+        public IActionResult CompareCountries()
+        {
+            //Populate the dropdownlists with cities
+            List<Country> countryList = new List<Country>();
+            countryList = (from x in _context.Country select x).ToList();           
+            ViewBag.countryList = countryList;
+
+            return View();
+        }
+        //End
+
+        [HttpPost]
+        public IActionResult CompareCountries(CompareViewModel model)
+        {
+            //Reinitialise the model after posting
+            List<Country> countryList = new List<Country>();
+            countryList = (from x in _context.Country select x).ToList();
+            ViewBag.countryList = countryList;
+
 
             //Assign the selected cities to the cities in the database
             var viewModel = new CompareViewModel();
 
-            viewModel.cityA = _context.City.Include(c => c.Country)
-                                     .FirstOrDefault(m => m.CityId == model.cityA.CityId);
+            viewModel.countryA = _context.Country.Include(c => c.City)
+                                     .FirstOrDefault(m => m.CountryId == model.countryA.CountryId);
 
-            viewModel.cityB = _context.City.Include(c => c.Country)
-                                     .FirstOrDefault(m => m.CityId == model.cityB.CityId);
+            viewModel.countryB = _context.Country.Include(c => c.City)
+                                     .FirstOrDefault(m => m.CountryId == model.countryB.CountryId);
 
             return View(viewModel);
+
         }
 
         public async Task<IActionResult> CityRankings()
@@ -136,105 +185,46 @@ namespace FYP.Controllers
             return View();
         }
 
-        public IActionResult Register()
-        {
-            return View();
-        }
-
-        /* [HttpPost]
-         [ValidateAntiForgeryToken]
-         public async Task<IActionResult> LogIn([Bind("UserId,Username,Email,Password,HomeCountry,HomeCity,CurrentCountry,CurrentCity,UserType")] User user)
-         {
-             if (ModelState.IsValid)
-             {
-                 _context.Add(user);
-                 await _context.SaveChangesAsync();
-                 return RedirectToAction(nameof(Index));
-             }
-             return View(user);
-         }*/
-
-        //Reference - https://csharp-video-tutorials.blogspot.com/2019/06/aspnet-core-identity-usermanager-and.html
-        [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
-        {
-            if(ModelState.IsValid)
-            {
-                var user = new ApplicationUser
-                {
-                    UserName = model.Username,
-                    Email = model.Email,
-                    //homecountry = model.homecountry,
-                    //homecity = model.homecity,
-                    //currentcountry = model.currentcountry,
-                    //currentcity = model.currentcity,
-                    UserType = "user"
-                };
-
-                var result = await userManager.CreateAsync(user, model.Password);
-
-                if(result.Succeeded)
-                {
-                    await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
-                }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-            }
-
-            return View(model);
-        }
-
-        //Reference - https://csharp-video-tutorials.blogspot.com/2019/06/show-or-hide-login-and-logout-links.html
+        /*Code below is based on:
+          Show or hide login and logout links based on login status in asp.net core
+          Pragimtech
+          https://csharp-video-tutorials.blogspot.com/2019/06/show-or-hide-login-and-logout-links.html */
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+        //End
 
-        //Reference - https://csharp-video-tutorials.blogspot.com/2019/06/implementing-login-functionality-in.html
-        [HttpPost]
-        public async Task<IActionResult> LogIn(LoginViewModel model)
+    /*Code below is based on:
+     Implementing login functionality in asp.net core
+     Pragimtech
+     https://csharp-video-tutorials.blogspot.com/2019/06/implementing-login-functionality-in.html */
+    [HttpPost]
+    public async Task<IActionResult> LogIn(LoginViewModel model)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
+            var result = await signInManager.PasswordSignInAsync(
+                model.Username, model.Password, model.RememberMe, false);
+
+            if (result.Succeeded)
             {
-                var result = await signInManager.PasswordSignInAsync(
-                    model.Username, model.Password, model.RememberMe, false);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-
-                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+                return RedirectToAction("Admin", "Home");
             }
 
-            return View(model);
+            ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
         }
-        /* if ((user.Username == null) && (user.Password == null))
-         {
-             return NotFound();
-         } else
-         {
-             var usernameId = await _context.User.FirstOrDefaultAsync(m => m.Username == user.Username);
-             var passwordId = await _context.User.FirstOrDefaultAsync(m => m.Password == user.Password);
 
-             if (usernameId == passwordId)
-             {
-                 return Content("Success");
-             } else
-             {
-                 return Error();
-             }*/
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        return View(model);
     }
+        //End
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+  }
 }

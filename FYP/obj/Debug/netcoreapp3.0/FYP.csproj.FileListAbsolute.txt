@@ -122,7 +122,6 @@ C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\ru\Microsoft.CodeAna
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Compare.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Map.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Explore.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Cities\Create.cshtml.g.cs
@@ -143,7 +142,6 @@ C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Sou
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Admin.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\LogIn.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\Register.cshtml.g.cs
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\Microsoft.Data.Sqlite.dll
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Sqlite.dll
@@ -165,3 +163,10 @@ C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\runtimes\win-arm64\n
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\rossh\source\repos\FYP\FYP\bin\Debug\netcoreapp3.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\FYP.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Users\Create.cshtml.g.cs
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Users\Delete.cshtml.g.cs
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Users\Details.cshtml.g.cs
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Users\Edit.cshtml.g.cs
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Users\Index.cshtml.g.cs
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\CompareCities.cshtml.g.cs
+C:\Users\rossh\source\repos\FYP\FYP\obj\Debug\netcoreapp3.0\Razor\Views\Home\CompareCountries.cshtml.g.cs

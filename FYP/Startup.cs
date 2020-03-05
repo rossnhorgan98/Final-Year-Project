@@ -31,7 +31,13 @@ namespace FYP
             var connection = Configuration.GetConnectionString("InventoryDatabase");
             services.AddDbContext<InventoryContext>(options => options.UseSqlServer(connection));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireDigit = false;
+                options.Password.RequireUppercase = false;
+            })
             .AddEntityFrameworkStores<InventoryContext>();
 
             

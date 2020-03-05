@@ -8,10 +8,7 @@ namespace FYP.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public string HomeCountry { get;  set; }
-        public string HomeCity { get;  set; }
         public string CurrentCountry { get;  set; }
         public string CurrentCity { get;  set; }
-        public string UserType { get;  set; }
     }
 }

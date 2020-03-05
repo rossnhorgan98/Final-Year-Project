@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace FYP.Models
 {
+    /*Code below is based on:
+      Register new user using asp.net core identity
+      Pragimtech
+      https://csharp-video-tutorials.blogspot.com/2019/06/register-new-user-using-aspnet-core.html */
     public class RegisterViewModel
     {
         public string Username { get; set; }
@@ -15,15 +19,13 @@ namespace FYP.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        public string HomeCountry { get; set; }
-        public string HomeCity { get; set; }
-        public string CurrentCountry { get; set; }
-        public string CurrentCity { get; set; }
-        public string UserType { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
 
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password and conformation password do not match.")]
         public string ConfirmPassword { get; set; }
         
     }
+    //End
 }

@@ -9,6 +9,9 @@ namespace FYP.Models
     {
         public City cityA { get; set; }
         public City cityB { get; set; }
+
+        public Country countryA { get; set; }
+        public Country countryB { get; set; }
         
     }
 }
