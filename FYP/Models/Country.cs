@@ -22,7 +22,6 @@ namespace FYP.Models
         public string Currency { get; set; }
         public decimal? Hdi { get; set; }
         public int? Gdp { get; set; }
-        public string Description { get; set; }
         public int? HealthcareRanking { get; set; }
         public decimal? AverageWage { get; set; }
         public int? AvgWorkHours { get; set; }

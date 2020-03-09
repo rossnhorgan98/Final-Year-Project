@@ -10,10 +10,10 @@
         <div class="container text-center">
             <h2>Select cities to compare</h2>
             <form method="post" asp-controller="Home" asp-action="CompareCities">
-                <select id="cityA" asp-for="cityA.CityId" asp-items="@(new SelectList(ViewBag.cityList,"CityId","Name"))">
+                <select id="cityA" asp-for="cityA.CityId" asp-items="@(new SelectList(ViewBag.cityList,"CityId","Name").OrderBy(l => l.Text))">
                 </select>
 
-                <select id="cityB" asp-for="cityB.CityId" asp-items="@(new SelectList(ViewBag.cityList,"CityId","Name"))">
+                <select id="cityB" asp-for="cityB.CityId" asp-items="@(new SelectList(ViewBag.cityList,"CityId","Name").OrderBy(l => l.Text))">
                 </select>
                 <br /> <br />
                 <button class="genric-btn primary radius">Compare</button>
@@ -25,56 +25,67 @@
         {
             <div class="container text-center" style="display:flex;">
                 <div style="flex:1;">
-                    <h3><a asp-controller="Home" asp-action="CityProfile" asp-route-id="@Model.cityA.CityId">@Model.cityA.Name</a></h3><br />
-                    <h5>General</h5>
+                    <h2><a asp-controller="Home" asp-action="CityProfile" asp-route-id="@Model.cityA.CityId">@Model.cityA.Name</a></h2><br />
+                    <h3>General</h3>
                     <ul style="list-style: none;">
-                        <li><b>Population:</b> @Model.cityA.Population 
+                        <li>
+                            <b>Population:</b> @Model.cityA.Population
                         </li>
                         <li><b>Quality of Life Index:</b> @Model.cityA.QualityOfLifeIndex </li>
-                        <li><b>Climate Type:</b> @Model.cityA.ClimateType</li>
+                        
                         <li><b>Safety Index:</b> @Model.cityA.SafetyIndex</li>
                         <li><b>Pollution Index:</b> @Model.cityA.PollutionIndex</li>
                     </ul>
                     <br />
-                    <h5>Cost</h5>
+                    <h3>Cost</h3>
                     <ul style="list-style: none;">
                         <li><b>Cost of Living Index:</b> @Model.cityA.CostOfLivingIndex</li>
                         <li><b>Rent Index: </b>@Model.cityA.RentIndex</li>
                         <li><b>Purchasing Power Index: </b>@Model.cityA.PurchasingPowerIndex</li>
                     </ul>
                     <br />
-                    <h5>Transport</h5>
+                    <h3>Transport</h3>
                     <ul style="list-style: none;">
                         <li><b>Traffic Rate:</b>@Model.cityA.TrafficRate%</li>
                         <li><b>Number of light rail lines:</b> @Model.cityA.LightRailLines</li>
                         <li><b>Number of Airports:</b> @Model.cityA.NoOfAirports</li>
                     </ul>
-
+                    <br />
+                    <h3>Climate</h3>
+                    <ul>
+                        <li><b>Climate Type:</b> @Model.cityA.ClimateType</li>
+                        <li><img src="@Url.Content(Model.cityA.ClimateImage)" width="300" height="175" /></li>
+                    </ul>
                 </div>
                 
                 <div style="flex:1;">
-                    <h3> <a asp-controller="Home" asp-action="CityProfile" asp-route-id="@Model.cityB.CityId">@Model.cityB.Name</a></h3> <br>
-                    <h5>General</h5>
+                    <h2> <a asp-controller="Home" asp-action="CityProfile" asp-route-id="@Model.cityB.CityId">@Model.cityB.Name</a></h2> <br>
+                    <h3>General</h3>
                     <ul style="list-style: none;">
                         <li><b>Population:</b> @Model.cityB.Population</li>
                         <li><b>Quality of Life Index:</b> @Model.cityB.QualityOfLifeIndex</li>
-                        <li><b>Climate Type:</b> @Model.cityB.ClimateType</li>
                         <li><b>Safety Index:</b>@Model.cityB.SafetyIndex </li>
                         <li><b>Pollution Index:</b> @Model.cityB.PollutionIndex</li>
                     </ul>
                     <br />
-                    <h5>Cost</h5>
+                    <h3>Cost</h3>
                     <ul style="list-style: none;">
                         <li><b>Cost of Living Index:</b> @Model.cityB.CostOfLivingIndex </li>
                         <li><b>Rent Index:</b> @Model.cityB.RentIndex</li>
                         <li><b>Purchasing Power Index:</b> @Model.cityB.PurchasingPowerIndex</li>
                     </ul>
                     <br />
-                    <h5>Transport</h5>
+                    <h3>Transport</h3>
                     <ul style="list-style: none;">
                         <li><b>Traffic Rate:</b> @Model.cityB.TrafficRate%</li>
                         <li><b>Number of light rail lines:</b> @Model.cityB.LightRailLines</li>
                         <li><b>Number of Airports:</b> @Model.cityB.NoOfAirports</li>
+                    </ul>
+                    <br />
+                    <h3>Climate</h3>
+                    <ul>
+                        <li><b>Climate Type:</b> @Model.cityB.ClimateType</li>
+                        <li><img src="@Url.Content(Model.cityB.ClimateImage)" width="300" height="175" /></li>
                     </ul>
                 </div>
             </div>

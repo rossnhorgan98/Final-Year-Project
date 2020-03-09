@@ -1,7 +1,7 @@
 ﻿@model FYP.Models.City
 
 @{
-    ViewData["Title"] = "Locationer - " + Model.Name;
+    ViewData["Title"] = Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,10 +12,10 @@
         <br /><br />
 
         <div class="container text-center">
-            <h1>@Html.DisplayFor(model => model.Name), @Html.DisplayFor(model => model.Country.Name)</h1> <br />
+            <h1>@Html.DisplayFor(model => model.Name)</h1>
+            <h2><a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@Model.Country.CountryId">@Html.DisplayFor(model => model.Country.Name)</a></h2> <br />
         </div>
 
-        <p> @Html.DisplayFor(model => model.Description)</p>
         <br />
         <div style="display:flex;">
             <div style="flex:1;">
@@ -33,7 +33,7 @@
                 <ul>
                     <li><b>Cost of Living Index: </b>@Html.DisplayFor(model => model.CostOfLivingIndex) </li>
                     <li><b>Rent Index: </b>@Html.DisplayFor(model => model.RentIndex)</li>
-                    <li><b>Purchasing Power:</b> @Html.DisplayFor(model => model.PurchasingPowerIndex)</li>
+                    <li><b>Purchasing Power Index:</b> @Html.DisplayFor(model => model.PurchasingPowerIndex)</li>
                 </ul>
             </div>
 

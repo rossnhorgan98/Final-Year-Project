@@ -414,7 +414,7 @@
                             </td>
                             <td>
                                 <a asp-controller="Home" asp-action="CountryProfile" asp-route-id="@item.CountryId">
-                                    <img src="@Url.Content(item.Flag)" width="35" height="20" />&nbsp; @Html.DisplayFor(modelItem => item.Name)
+                                     @Html.DisplayFor(modelItem => item.Name)
                                 </a>
                             </td>
                             <td>

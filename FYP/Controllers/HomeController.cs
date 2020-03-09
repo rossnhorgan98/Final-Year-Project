@@ -25,16 +25,19 @@ namespace FYP.Controllers
             this.signInManager = signInManager;
         }
 
+        //Render home screen
         public IActionResult Index()
         {
             return View();
         }
 
+        //Render country select page
         public async Task<IActionResult> Explore()
         {
             return View(await _context.Country.ToListAsync());
         }
 
+        //Render a country profile page depending on which country is selected
         public async Task<IActionResult> CountryProfile(int? id)
         {
             if (id == null)
@@ -53,12 +56,7 @@ namespace FYP.Controllers
             return View(country);
         }
 
-       /* [HttpPost]
-        public IActionResult Convert(double amount, string currency)
-        {
-
-        }*/
-
+        //Render a city profile page depending on which city is selected
         public async Task<IActionResult> CityProfile(int? id)
         {
             if (id == null)
@@ -77,12 +75,14 @@ namespace FYP.Controllers
             return View(city);
         }
 
+        //Render the map view with all of the cities
         public async Task<IActionResult> Map()
         {
             var inventoryContext = _context.City.Include(c => c.Country);
             return View(await inventoryContext.ToListAsync());
         }
 
+        //Render compare cities page
         /*Code below is based on:
          ASP.NET Core MVC How To Get Selected Dropdown Value In jQuery 3.4.1
          Haritha Computers & Technology
@@ -91,21 +91,20 @@ namespace FYP.Controllers
         {
             //Populate the dropdownlists with cities
             List<City> cityList = new List<City>();
-            cityList = (from x in _context.City select x).ToList();         
-            //cityList.Insert(0, new City { CityId = 0, Name = "-- Select City --" });
+            cityList = (from x in _context.City select x).ToList();                    
             ViewBag.cityList = cityList;
 
             return View();
         }
         //End
 
+        //Compare cities
         [HttpPost]
         public IActionResult CompareCities(CompareViewModel model)
         {
             //Reinitialise the model after posting
             List<City> cityList = new List<City>();
             cityList = (from x in _context.City select x).ToList();
-           // cityList.Insert(0, new City { CityId = 0, Name = "-- Select City --" });
             ViewBag.cityList = cityList;
 
             
@@ -122,6 +121,7 @@ namespace FYP.Controllers
             
         }
 
+        //Render compare countries page
         /*Code below is based on:
         ASP.NET Core MVC How To Get Selected Dropdown Value In jQuery 3.4.1
         Haritha Computers & Technology
@@ -137,6 +137,7 @@ namespace FYP.Controllers
         }
         //End
 
+        //Compare countries
         [HttpPost]
         public IActionResult CompareCountries(CompareViewModel model)
         {
@@ -159,32 +160,46 @@ namespace FYP.Controllers
 
         }
 
+        //Render city rankings page
         public async Task<IActionResult> CityRankings()
         {
             var inventoryContext = _context.City.Include(c => c.Country);
             return View(await inventoryContext.ToListAsync());
         }
 
+        //Render country rankings
         public async Task<IActionResult> CountryRankings()
         {
             return View(await _context.Country.ToListAsync());
         }
 
+        //Render our sources page
         public IActionResult Sources()
         {
             return View();
         }
 
+        //Render admin centre
         public IActionResult Admin()
         {
-            return View();
+            //User must be signed in order to see admin content
+            if (signInManager.IsSignedIn(User))
+            {
+                return View();
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
+   
         }
 
+        //Render login view
         public IActionResult LogIn()
         {
             return View();
         }
 
+        //Logout user
         /*Code below is based on:
           Show or hide login and logout links based on login status in asp.net core
           Pragimtech
@@ -197,6 +212,7 @@ namespace FYP.Controllers
         }
         //End
 
+    //User login
     /*Code below is based on:
      Implementing login functionality in asp.net core
      Pragimtech

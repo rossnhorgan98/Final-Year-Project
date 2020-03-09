@@ -8,28 +8,39 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FYP.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FYP.Controllers
 {
     public class CountriesController : Controller
     {
         private readonly InventoryContext _context;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
-        public CountriesController(InventoryContext context)
+        public CountriesController(InventoryContext context, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
+            this.signInManager = signInManager;
         }
 
-        // GET: Countries
+        // Show list of countries in table
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Country.ToListAsync());
+            if (signInManager.IsSignedIn(User))
+            {
+                return View(await _context.Country.ToListAsync());
+             } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-        // GET: Countries/Details/5
+        //Show country details
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (signInManager.IsSignedIn(User))
+            {
+                if (id == null)
             {
                 return NotFound();
             }
@@ -42,17 +53,26 @@ namespace FYP.Controllers
             }
 
             return View(country);
+
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-        // GET: Countries/Create
+        //Render create country view
         public IActionResult Create()
         {
-            return View();
+            if (signInManager.IsSignedIn(User))
+            {
+                return View();
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-        // POST: Countries/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Add a country to the country table
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CountryId,Name,Flag,Map,Population,LanguageS,Currency,Hdi,Gdp,Description,HealthcareRanking,AverageWage,AvgWorkHours,MinAnnualLeave,MinnimumWage,UnemploymentRate,PensionIndex,AvgUniCost,EducationDescription,MaxIncomeTax,MinIncomeTax,Vat,CorporationTax,HomicideRate,Continent")] Country country)
@@ -66,10 +86,12 @@ namespace FYP.Controllers
             return View(country);
         }
 
-        // GET: Countries/Edit/5
+        //Retrieve the edit country page
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (signInManager.IsSignedIn(User))
+            {
+                if (id == null)
             {
                 return NotFound();
             }
@@ -80,11 +102,14 @@ namespace FYP.Controllers
                 return NotFound();
             }
             return View(country);
+
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-        // POST: Countries/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Save changes to a country
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CountryId,Name,Flag,Map,Population,LanguageS,Currency,Hdi,Gdp,Description,HealthcareRanking,AverageWage,AvgWorkHours,MinAnnualLeave,MinnimumWage,UnemploymentRate,PensionIndex,AvgUniCost,EducationDescription,MaxIncomeTax,MinIncomeTax,Vat,CorporationTax,HomicideRate,Continent")] Country country)
@@ -117,10 +142,12 @@ namespace FYP.Controllers
             return View(country);
         }
 
-        // GET: Countries/Delete/5
+        //Retrieve view for deleting country
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (signInManager.IsSignedIn(User))
+            {
+                if (id == null)
             {
                 return NotFound();
             }
@@ -133,9 +160,14 @@ namespace FYP.Controllers
             }
 
             return View(country);
+
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-        // POST: Countries/Delete/5
+        //Delete a country from table
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

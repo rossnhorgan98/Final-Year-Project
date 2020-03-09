@@ -8,29 +8,40 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FYP.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FYP.Controllers
 {
     public class CitiesController : Controller
     {
         private readonly InventoryContext _context;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
-        public CitiesController(InventoryContext context)
+        public CitiesController(InventoryContext context, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
+            this.signInManager = signInManager;
         }
 
-        // GET: Cities
+        // Show list of cities in table
         public async Task<IActionResult> Index()
         {
-            var inventoryContext = _context.City.Include(c => c.Country);
+            if (signInManager.IsSignedIn(User))
+            {
+                var inventoryContext = _context.City.Include(c => c.Country);
             return View(await inventoryContext.ToListAsync());
-        }
+        } else
+            {
+               return RedirectToAction("Login", "Home");
+    }
+}
 
-        // GET: Cities/Details/5
+        // Show city details
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (signInManager.IsSignedIn(User))
+            {
+                if (id == null)
             {
                 return NotFound();
             }
@@ -44,18 +55,28 @@ namespace FYP.Controllers
             }
 
             return View(city);
+            
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-        // GET: Cities/Create
+        // Render create country view
         public IActionResult Create()
         {
-            ViewData["CountryId"] = new SelectList(_context.Country, "CountryId", "Name");
+            if (signInManager.IsSignedIn(User))
+            {
+                ViewData["CountryId"] = new SelectList(_context.Country, "CountryId", "Name");
             return View();
+            
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-        // POST: Cities/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Add a city to the city table
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CityId,Name,CountryId,Population,GeneralPicture,Description,QualityOfLifeIndex,CostOfLivingIndex,RentIndex,PurchasingPowerIndex,ClimateType,ClimateImage,ClimateDescription,TrafficRate,LightRailLines,NoOfAirports,TransportImage,NoOfUniversities,SafetyIndex,PollutionIndex")] City city)
@@ -70,10 +91,12 @@ namespace FYP.Controllers
             return View(city);
         }
 
-        // GET: Cities/Edit/5
+        //Retrieve the edit city page
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (signInManager.IsSignedIn(User))
+            {
+                if (id == null)
             {
                 return NotFound();
             }
@@ -85,11 +108,13 @@ namespace FYP.Controllers
             }
             ViewData["CountryId"] = new SelectList(_context.Country, "CountryId", "Name", city.CountryId);
             return View(city);
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-        // POST: Cities/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Save changes to a city
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CityId,Name,CountryId,Population,GeneralPicture,Description,QualityOfLifeIndex,CostOfLivingIndex,RentIndex,PurchasingPowerIndex,ClimateType,ClimateImage,ClimateDescription,TrafficRate,LightRailLines,NoOfAirports,TransportImage,NoOfUniversities,SafetyIndex,PollutionIndex")] City city)
@@ -123,10 +148,12 @@ namespace FYP.Controllers
             return View(city);
         }
 
-        // GET: Cities/Delete/5
+        //Retrieve view for deleting city
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (signInManager.IsSignedIn(User))
+            {
+                if (id == null)
             {
                 return NotFound();
             }
@@ -140,9 +167,13 @@ namespace FYP.Controllers
             }
 
             return View(city);
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-        // POST: Cities/Delete/5
+        // Delete a city from table
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

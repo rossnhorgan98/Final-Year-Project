@@ -8,29 +8,30 @@
     ViewData["Title"] = "Locationer - Explore";
 }
 
-<div class="container">
-<h1>Select a city</h1>
-    <br />
-<!--Begin modified code-->
-<div id="mapid"></div>
-    </div>
-<script>
-    var mymap = L.map('mapid').setView([20, 0], 2);
+    <div class="container">
+        <h1>Select a city</h1>
+        <br />
+        <!--Begin modified code-->
+        <div id="mapid"></div>
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        accessToken: 'pk.eyJ1Ijoicm9zc25ob3JnYW45OCIsImEiOiJjazZjajluZHIwc2g4M2VtdmNiYTJwM2JpIn0.g1KRBVBufFkGMy3kKFZvBw'
-    }).addTo(mymap);
-</script>
+        <script>
+            var mymap = L.map('mapid').setView([20, 0], 2);
 
-@foreach (var item in Model)
-{
-    <script>
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox/streets-v11',
+                accessToken: 'pk.eyJ1Ijoicm9zc25ob3JnYW45OCIsImEiOiJjazZjajluZHIwc2g4M2VtdmNiYTJwM2JpIn0.g1KRBVBufFkGMy3kKFZvBw'
+            }).addTo(mymap);
+        </script>
+
+        <!--Adding a marker for each city onto map-->
+        @foreach (var item in Model)
+        {
+            <script>
         var marker = L.marker([@item.Latitude, @item.Longitude]).addTo(mymap);
-        marker.bindPopup('<b><a href="/Home/CityProfile/@item.CityId" >@item.Name</a></b><br>@item.Country.Name');
-    </script>
-}
-<!--End modified code-->
-
+        marker.bindPopup('<img src="@item.GeneralPicture" width="200" height="75" /> <br /> <h4> <a href="/Home/CityProfile/@item.CityId" >@item.Name</a></h4 ><h5>@item.Country.Name</h5>');
+            </script>
+        }
+        <!--End modified code-->
+    </div>

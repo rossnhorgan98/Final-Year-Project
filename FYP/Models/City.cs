@@ -14,7 +14,6 @@ namespace FYP.Models
         public int CountryId { get; set; }
         public int? Population { get; set; }
         public string? GeneralPicture { get; set; }
-        public string Description { get; set; }
         public decimal? QualityOfLifeIndex { get; set; }
         public decimal? CostOfLivingIndex { get; set; }
         public decimal? RentIndex { get; set; }
@@ -25,7 +24,6 @@ namespace FYP.Models
         public decimal? TrafficRate { get; set; }
         public int? LightRailLines { get; set; }
         public int? NoOfAirports { get; set; }
-        public string? TransportImage { get; set; }
         public int? NoOfUniversities { get; set; }
         public decimal? SafetyIndex { get; set; }
         public decimal? PollutionIndex { get; set; }

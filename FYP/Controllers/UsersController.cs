@@ -15,23 +15,34 @@ namespace FYP.Controllers
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
-        public UsersController(UserManager<ApplicationUser> userManager)
+        public UsersController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
-        
+        // Show list of users in table
         public IActionResult Index()
         {
-            var users = userManager.Users;
+            if (signInManager.IsSignedIn(User))
+            {
+                var users = userManager.Users;
             return View(users);
-        }
 
-        
+        } else
+            {
+               return RedirectToAction("Login", "Home");
+          }
+}
+
+        //Show user details
         public async Task<IActionResult> Details(string id)
         {
-            var user = await userManager.FindByIdAsync(id);
+            if (signInManager.IsSignedIn(User))
+            {
+                var user = await userManager.FindByIdAsync(id);
 
             if (user == null)
             {
@@ -49,16 +60,29 @@ namespace FYP.Controllers
             };
 
             return View(model);
+
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
+        //Render create user view
         public IActionResult Create()
         {
-            return View();
-        }
+            if (signInManager.IsSignedIn(User))
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+    }
 
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Add a user to the user table
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RegisterViewModel model)
@@ -89,13 +113,16 @@ namespace FYP.Controllers
             return View(model);
         }
 
+        //Retrieve the edit user page
         /* Code below is based on:
            Edit identity user in asp.net core
            Pragimtech
            https://csharp-video-tutorials.blogspot.com/2019/07/edit-identity-user-in-aspnet-core.html */
         public async Task<IActionResult> Edit(string id)
         {
-            var user = await userManager.FindByIdAsync(id);
+            if (signInManager.IsSignedIn(User))
+            {
+                var user = await userManager.FindByIdAsync(id);
 
             if (user == null)
             {
@@ -113,11 +140,15 @@ namespace FYP.Controllers
             };
 
             return View(model);
+
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
-       
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        //Save changes to a user
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ApplicationUser model)
@@ -153,9 +184,12 @@ namespace FYP.Controllers
         }
         //End
 
+        //Retrieve view for deleting country
         public async Task<IActionResult> Delete(string id)
         {
-            var user = await userManager.FindByIdAsync(id);
+            if (signInManager.IsSignedIn(User))
+            {
+                var user = await userManager.FindByIdAsync(id);
 
             if (user == null)
             {
@@ -173,8 +207,14 @@ namespace FYP.Controllers
             };
 
             return View(model);
+
+            } else
+            {
+               return RedirectToAction("Login", "Home");
+            }
         }
 
+        //Delete a user from table
         /* Code below is based on:
            Delete identity user in asp.net core
            Pragimtech

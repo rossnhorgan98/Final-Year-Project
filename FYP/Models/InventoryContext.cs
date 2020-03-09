@@ -24,15 +24,6 @@ namespace FYP.Models
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=DESKTOP2;Database=Inventory;Integrated Security=True");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -53,8 +44,6 @@ namespace FYP.Models
 
                 entity.Property(e => e.CountryId).HasColumnName("CountryID");
 
-                entity.Property(e => e.Description).IsUnicode(false);
-
                 entity.Property(e => e.GeneralPicture).IsUnicode(false);
 
                 entity.Property(e => e.Name)
@@ -73,8 +62,6 @@ namespace FYP.Models
                 entity.Property(e => e.SafetyIndex).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.TrafficRate).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.TransportImage).IsUnicode(false);
 
                 entity.Property(e => e.Latitude).HasColumnType("float");
 
@@ -102,8 +89,7 @@ namespace FYP.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Description).IsUnicode(false);
-
+              
                 entity.Property(e => e.Gdp).HasColumnName("GDP");
 
                 entity.Property(e => e.Flag).IsUnicode(false);

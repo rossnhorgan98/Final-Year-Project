@@ -1,4 +1,9 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿<!--A HTML template is being used as a skeleton for the front-end
+    Travelo
+    Colorlib
+    https://colorlib.com/wp/template/travelo/ -->
+
+@using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 <!DOCTYPE html>
 <html lang="en">
@@ -6,9 +11,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>@ViewData["Title"] - FYP</title>
+    <title>@ViewData["Title"] - Locationer</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-
     <link rel="stylesheet" href="~/css/site.css" />
 
     <!--Map view css library-->
@@ -21,7 +25,7 @@
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
 
-    <!--Template CSS-->
+    <!--Travelo HTML Template CSS files-->
     <link rel="stylesheet" href="~/travelo/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/travelo/css/owl.carousel.min.css">
     <link rel="stylesheet" href="~/travelo/css/magnific-popup.css">
@@ -33,61 +37,58 @@
     <link rel="stylesheet" href="~/travelo/css/animate.css">
     <link rel="stylesheet" href="~/travelo/css/slick.css">
     <link rel="stylesheet" href="~/travelo/css/slicknav.css">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-
     <link rel="stylesheet" href="~/travelo/css/style.css">
 
 </head>
 <body>
     <header>
-        <div class="header-area ">
+        <div class="header-area">
             <div id="sticky-header" class="main-header-area">
                 <div class="container-fluid">
                     <div class="header_bottom_border">
                         <div class="row align-items-center">
-                            <div class="col-xl-2 col-lg-2">
-                                <div class="logo">
-                                    <a asp-controller="Home" asp-action="Index">
-                                        <img src="/Images/locationer.PNG" width="200" height="75">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6">
-                                <div class="main-menu  d-none d-lg-block">
-                                    <nav>
-                                        <ul id="navigation">
-                                            <li>
-                                                <a href="/Home/Index">Home</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Explore <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="/Home/Map">Cities</a></li>
-                                                    <li><a href="/Home/Explore">Countries</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">Compare <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="/Home/CompareCities">Cities</a></li>
-                                                    <li><a href="/Home/CompareCountries">Countries</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">Rankings <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="/Home/CityRankings">Cities</a></li>
-                                                    <li><a href="/Home/CountryRankings">Countries</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="/Home/Sources">Our Sources</a>
-                                            </li>
-                                        
+
+                            <div class="logo">
+                                <a asp-controller="Home" asp-action="Index">
+                                    <img src="/Images/locationer.PNG" width="225" height="90">
+                                </a>
+                            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <div class="main-menu d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li>
+                                            <a href="/Home/Index">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Explore <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/Home/Map">Cities</a></li>
+                                                <li><a href="/Home/Explore">Countries</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Compare <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/Home/CompareCities">Cities</a></li>
+                                                <li><a href="/Home/CompareCountries">Countries</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Rankings <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/Home/CityRankings">Cities</a></li>
+                                                <li><a href="/Home/CountryRankings">Countries</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="/Home/Sources">Our Sources</a>
+                                        </li>
+
                                         <!--Code below is based on:
-            Show or hide login and logout links based on login status in asp.net core
-            Pragimtech
-            https://csharp-video-tutorials.blogspot.com/2019/06/show-or-hide-login-and-logout-links.html -->
+                                        Show or hide login and logout links based on login status in asp.net core
+                                        Pragimtech
+                                        https://csharp-video-tutorials.blogspot.com/2019/06/show-or-hide-login-and-logout-links.html -->
                                         @if (SignInManager.IsSignedIn(User))
                                         {
 
@@ -114,13 +115,13 @@
                                         }
                                         <!--End-->
                                     </ul>
-                                        </nav>
-                                
-                            
-                                   </div>
-                                </div>
-                                </div>
+                                </nav>
+
+
+
                             </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -129,9 +130,9 @@
 
     <div class="container-fluid page-container">
         <div class="content-wrap">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
     </div>
 
@@ -153,13 +154,7 @@
         </div>
     </footer>
 
-    <!-- <script src="~/lib/jquery/dist/jquery.min.js"></script>
-     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/vendor/jquery/jquery.min.js"></script>
-    <script src="~/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="~/js/grayscale.js" asp-append-version="true"></script>-->
-    <!--Template JS -->
+    <!--Travelo Template JavaScript files-->
     <script src="~/travelo/js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="~/travelo/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="~/travelo/js/popper.min.js"></script>
